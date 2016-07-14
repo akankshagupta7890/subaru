@@ -2,6 +2,7 @@
 <form name='enquiry' method='post' action="" onsubmit="return enquiryval();" id="enquiry" name="enquiry">     
 <div class="enquire-form">
 <div class="row">
+<div id="loader"></div>
 <div class="col-md-6">
 <input type="text" placeholder="First Name" class="form-control" name="first-name" id="fname1">
 </div> <!---col-md-6--->
@@ -20,7 +21,7 @@
 <div class="col-md-12">
 <input type="submit" value="Submit" class="btn btn-danger btn-enquirre" name="submit">
 </div>
-<div class="col-md-12"><span id="success-msg"></span></div>
+<div class="col-md-12"><span id="success-msg" style="display:none;"></span></div>
 </div>   <!---row--->      
 </div> <!---enquire-form--->
 </form>

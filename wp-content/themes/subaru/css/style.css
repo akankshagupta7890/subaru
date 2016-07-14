@@ -3407,13 +3407,22 @@ html[xmlns] .flexslider .slides {
     background: #e2e2e2;
     bottom: 0;
     color: #e7008b;
-    font-size: 30px;
+    font-size: 18px;
     height: 45px;
-    line-height: 44px;
+    line-height: 45px;
     position: absolute;
     right: 0;
     text-align: center;
     width: 45px;
+    font-weight: 300;
+    border: none;
+    transition: all 0.6s ease-in-out;
+    -webkit-transition: all 0.6s ease-in-out;
+}
+
+.plus-sign:hover, .plus-sign:focus{
+    background:  #e7008b;
+    color: #e2e2e2;
 }
 
 .img-box p {
@@ -3422,6 +3431,7 @@ html[xmlns] .flexslider .slides {
     font-size: 24px;
     line-height: normal;
     text-align: left;
+    padding: 0;
 }
 
 .img-box > h4 {
@@ -6997,6 +7007,10 @@ li.dropdown-menu > li > a:hover {
     display: block;
 }
 
+.internal-head-gasket-leaks.advanced-warning p{
+    margin-bottom: 20px;
+}
+
 .gasket-headding {
     background: #f2f1f2;
     margin: 0 0 30px;
@@ -7313,20 +7327,50 @@ li.dropdown-menu > li > a:hover {
 
 .enquire-form {
     padding: 18px 30px 30px;
+    position: relative;
 }
 
 .enquire-form .form-control {
     border: 1px solid #aaaaaa;
     border-radius: 0;
-    color: #aeaeae;
+    color: #000;
     margin-top: 12px;
     box-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
 }
 
+.enquire-form .form-control::-webkit-input-placeholder {
+     color: #aeaeae;
+}
+.enquire-form .form-control:-moz-placeholder {
+     color: #aeaeae;
+}
+.enquire-form .form-control::-moz-placeholder {
+     color: #aeaeae;
+}
+.enquire-form .form-control:-ms-input-placeholder {
+     color: #aeaeae;
+}
+
 .enquire-form textarea {
     height: 125px;
+}
+
+.enquire-form .form-control.error{
+    border-color: red;
+}
+
+#success-msg{
+    background: green;
+    color: white;
+    z-index: 1;
+    padding: 0px;
+    line-height: 2.54;
+    display: inline-block;
+    width: 100%;
+    margin: 20px auto 0;
+    text-align: center;
 }
 
 .btn.btn-danger.btn-enquirre {
@@ -11132,9 +11176,7 @@ a.add-quote-btn {
     z-index: 99999;
 }
 
-.modal-backdrop {
-    z-index: 9999;
-}
+
 
 .modal-open {
     overflow: visible;
@@ -12067,7 +12109,10 @@ button.close.red-close:hover {
 
 .engine-testi-cvr .engine-testi-tab-btn .nav-pills>li.active>a,
 .engine-testi-cvr .engine-testi-tab-btn .nav-pills>li.active>a:focus,
-.engine-testi-cvr .engine-testi-tab-btn .nav-pills>li.active>a:hover {
+.engine-testi-cvr .engine-testi-tab-btn .nav-pills>li.active>a:hover,
+.engine-testi-cvr .engine-testi-tab-btn .nav-pills>li>a.active,
+.engine-testi-cvr .engine-testi-tab-btn .nav-pills>li>a.active:focus,
+.engine-testi-cvr .engine-testi-tab-btn .nav-pills>li>a.active:hover {
     color: #e70506;
     background-color: #fff;
     border-color: #000;
@@ -12097,13 +12142,14 @@ button.close.red-close:hover {
     left: 0;
 }
 
-.engine-testi-text p {
+.engine-testi-text p, .engine-testi-text{
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     color: #444444;
     line-height: 1.6;
     font-style: italic;
     font-weight: 400;
+    text-align: left;
 }
 
 .engine-testi-text .engine-testi-name h4 {

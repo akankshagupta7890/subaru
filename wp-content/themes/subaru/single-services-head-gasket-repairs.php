@@ -299,7 +299,7 @@ $url1 = $img[0];
 <div class="col-md-6">
 <?php    
 $img1 = get_post_meta($post->ID,"image1",true);
-$contimg1 = wp_get_attachment_image_src($img1,'full');
+$contimg1 = wp_get_attachment_image_src($img1,'service_head_gasket');
 $conturl1 = $contimg1[0];
 ?>
 <img alt="..." src="<?php echo $conturl1; ?>">
@@ -313,7 +313,7 @@ $conturl1 = $contimg1[0];
 <div class="col-md-6">
 <?php    
 $img2 = get_post_meta($post->ID,"image2",true);
-$contimg2 = wp_get_attachment_image_src($img2,'full');
+$contimg2 = wp_get_attachment_image_src($img2,'service_head_gasket');
 $conturl2 = $contimg2[0];
 ?>
 <img alt="..." src="<?php echo $conturl2; ?>">

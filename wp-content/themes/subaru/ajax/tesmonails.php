@@ -1,3 +1,21 @@
+<script>
+        jQuery(document).ready(function () {
+
+            jQuery("#engine-testi-inner").owlCarousel({
+
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+                items: 2,
+                itemsDesktop: [1199, 2],
+                itemsDesktopSmall: [979, 1]
+
+            });
+
+
+
+
+        });
+    </script> 
 <?php
 
 $id=$_POST['id'];	 
@@ -23,7 +41,7 @@ $term = get_term( $id, 'testimonial_categories' );
 	 
 ?>
 
-    <link href="<?php echo get_stylesheet_directory_uri(); ?>/css/owl.carousel.css" rel="stylesheet">
+    
 	<div id="engine-testi-inner">
 	<?php  while($loop->have_posts()) : $loop->the_post(); ?>
 	
@@ -41,25 +59,5 @@ $term = get_term( $id, 'testimonial_categories' );
 						<?php  endwhile; ?>
 
                </div>
-		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/liberary.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.min.js"></script> 				
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/owl.carousel.min.js"></script>
-						 <script>
-        jQuery(document).ready(function () {
-
-            jQuery("#engine-testi-inner").owlCarousel({
-
-                autoPlay: 3000, //Set AutoPlay to 3 seconds
-
-                items: 2,
-                itemsDesktop: [1199, 2],
-                itemsDesktopSmall: [979, 1]
-
-            });
-
-
-
-
-        });
-    </script>
+  
+	

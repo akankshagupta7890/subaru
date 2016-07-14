@@ -183,7 +183,8 @@ add_image_size( 'news_image', 276,245, true );
 add_image_size( 'news_inner_image', 828,341, true );  
 /*news banner image resize */
 add_image_size( 'news_banner_image', 1920,725, true );   
-add_image_size( 'latestnews_image', 461,255, true );   
+add_image_size( 'latestnews_image', 461,255, true );  
+add_image_size( 'service_head_gasket', 705,242, true );  
 
 
 /* TESTIMONIALS Section Home Page */

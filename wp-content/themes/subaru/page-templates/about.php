@@ -8,6 +8,27 @@
 */
 
 get_header(); ?> 
+<style>
+  .tab-content>.tab-pane {
+    visibility: hidden !important;
+    height: 0px !important;
+    overflow:hidden !important;
+}
+.tab-content>.active {
+    visibility: visible !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+.owl-carousel .item{
+    padding: 30px 0px;
+    margin: 5px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+}
+ 
+</style>
 <?php  
 global $post;
 while (have_posts()) : the_post(); 
@@ -113,9 +134,8 @@ else
 
 <div class="teams-section">
 <div class="container">
-<h3>Meet the team</h3>
-<p>In publishing and graphic design, lorem ipsum (derived from Latin dolorem ipsum, translated as "pain itself") <br>
-is a filler text commonly used to demonstrate the</p>
+<h3><?php echo get_post_meta($post->ID,"team_title",true); ?></h3>
+<?php echo get_post_meta($post->ID,"team_description",true); ?>
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 <?php
@@ -155,8 +175,10 @@ array(
 //'orderby' => 'title',
 'order' => 'ASC')
 );
+$j=1;
 foreach($posts as $post)
-{ ?> 	
+{ setup_postdata( $post ); 
+ ?> 	
 <div class="img-box">
 <div class="image-section">
 
@@ -178,15 +200,42 @@ else
 <?php
 }
 ?>
-<div class="plus-sign">+</div>
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+<!--<div class="plus-sign">+</div>-->
+<button type="button" class="plus-sign" data-toggle="modal" data-target="#myModal<?php echo $j; ?>"><i class="fa fa-plus" aria-hidden="true"></i></button>
+<!-- Modal -->
+<div id="myModal<?php echo $j; ?>" class="modal fade" role="dialog">
+<div class="modal-dialog">
 
+<!-- Modal content-->
+<div class="modal-content">
+
+<div class="modal-body">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+<div class="left-modal">
+    <?php if(get_the_post_thumbnail($post_id)){ echo get_the_post_thumbnail($post_id);}
+    else{ ?>
+    <img src="https://placeholdit.imgix.net/~text?txtsize=74&txt=No Image&w=270&h=270" alt="<?php the_title();?>">
+   <?php } ?>
+</div>
+<div class="right-modal">
+  <h4 class="modal-title"><?php echo get_the_title($post_id);?> <small><?php the_field('designation'); ?></small> </h4>
+ 
+<p><?php echo get_the_content($post_id); ?></p>    
+</div>    
+</div>
+
+</div>
+
+</div>
+</div>
 </div> 
 <h4><?php the_title();?></h4>
 <p><?php the_field('designation');?></p>
 </div>
 <?php
+$j++;
 }
+
 ?>		 <!--img-box Close-->
 
 </div>
@@ -203,151 +252,103 @@ $i++;
 
 <?php get_sidebar('departments'); ?> 
 
-<div class="engine-testi-cvr home-testi-cvr">
-<div class="container">
-<h1>what our clientS say about us</h1>
-
-<div class="engine-testi-tab-btn">
-<ul class="nav nav-pills">
-<li class="active"><a data-toggle="pill" href="#home">SERVICES</a></li>
-<li><a data-toggle="pill" href="#menu1">Engines</a></li>
-<li><a data-toggle="pill" href="#menu2">GEARBOXES</a></li>
-<li><a data-toggle="pill" href="#menu3">Parts</a></li>
-</ul>
-</div>
-
-<div class="tab-content">
-<div id="home" class="tab-pane fade in active">
-
-<div id="engine-testi">
-
-<div class="item">
-<div class="engine-testi-text">
-<p>Hi Niazi, Just wanted to take a minute to thank you for the work done on my Forester. I'll be forwarding your workshop details to anybody and everybody I know who has a Subaru. My work contact details are listed in the signature of this email. If you ever need any help with computers, networks, websites and databases, let me know. </p>
-
-<div class="engine-testi-name">
-<h4>Michael Zagami </h4>
-<p>Client Role (If any)</p>
-</div>
-
-</div>
-</div>
-
-<div class="item">
-<div class="engine-testi-text">
-<p>Hi ADS guys! Thanks for getting me back on the road so fast. I’ve had this car for three years, and it’s never gone as well as it does now--can’t hear it running in traffic, and it just eats hills. Getting your reconditioned 2.5 liter engine was the best decision I’ve ever made. It’s lIke having a new car, only cheaper. </p>
-
-<div class="engine-testi-name">
-<h4>Joanna Doe</h4>
-<p>Client Role (If any)</p>
-</div>
-
-</div>
-</div>
-
-
-<div class="item">
-<div class="engine-testi-text">
-<p>Hi Niazi, Just wanted to take a minute to thank you for the work done on my Forester. I'll be forwarding your workshop details to anybody and everybody I know who has a Subaru. My work contact details are listed in the signature of this email. If you ever need any help with computers, networks, websites and databases, let me know. </p>
-
-<div class="engine-testi-name">
-<h4>Michael Zagami </h4>
-<p>Client Role (If any)</p>
-</div>
-
-</div>
-</div>
-
-<div class="item">
-<div class="engine-testi-text">
-<p>Hi ADS guys! Thanks for getting me back on the road so fast. I’ve had this car for three years, and it’s never gone as well as it does now--can’t hear it running in traffic, and it just eats hills. Getting your reconditioned 2.5 liter engine was the best decision I’ve ever made. It’s lIke having a new car, only cheaper. </p>
-
-<div class="engine-testi-name">
-<h4>Joanna Doe</h4>
-<p>Client Role (If any)</p>
-</div>
-
-</div>
-</div>
-
-
-<div class="item">
-<div class="engine-testi-text">
-<p>Hi Niazi, Just wanted to take a minute to thank you for the work done on my Forester. I'll be forwarding your workshop details to anybody and everybody I know who has a Subaru. My work contact details are listed in the signature of this email. If you ever need any help with computers, networks, websites and databases, let me know. </p>
-
-<div class="engine-testi-name">
-<h4>Michael Zagami </h4>
-<p>Client Role (If any)</p>
-</div>
-
-</div>
-</div>
-
-<div class="item">
-<div class="engine-testi-text">
-<p>Hi ADS guys! Thanks for getting me back on the road so fast. I’ve had this car for three years, and it’s never gone as well as it does now--can’t hear it running in traffic, and it just eats hills. Getting your reconditioned 2.5 liter engine was the best decision I’ve ever made. It’s lIke having a new car, only cheaper. </p>
-
-<div class="engine-testi-name">
-<h4>Joanna Doe</h4>
-<p>Client Role (If any)</p>
-</div>
-
-</div>
-</div>
-
-
-
-</div>
-
-<div class="text-center">
-<a href="#" class="testi-btn">View More TESTIMONIALS</a>
-</div>
-
-</div>
-<div id="menu1" class="tab-pane fade">
-
-</div>
-<div id="menu2" class="tab-pane fade">
-
-</div>
-<div id="menu3" class="tab-pane fade">
-
-</div>
-</div>
-
-</div>
-
-</div>
+<?php get_sidebar('testimonials_slider'); ?>
 <!-- Client logo's Section -->
 <?php get_sidebar('brands'); ?>
 <!-- Client logo's Section End -->
 
 <?php get_footer();?>
-<script>
-//jQuery(document).ready(function(){
-//jQuery("a.custom-toggle").click(function(){
-//jQuery(this).toggleClass('collapsed').parent().parent().next().slideToggle('slow');
-//})
-//})
+<script type="text/javascript">
+$(document).ready(function () {
+	$(".owl-carousel").each(function(){
+		$(this).owlCarousel({
+		autoplay:true,	
+			loop:true,
+			nav:false,
+			dots: true,
+			margin:10,
+			responsive:{
+				0:{
+				items:1
+				},
+				480:{
+					items:2
+				},
+				600:{
+					items:2
+				},            
+				960:{
+					items:2
+				},
+				1200:{
+					items:2
+				}
+			}
+		});
+	});
+	setTimeout(function(){ 
+		$("#menu3").removeClass("in");
+		$("#menu3").removeClass("active");
+		$("#menu2").removeClass("in");
+		$("#menu2").removeClass("active");
+		$("#menu4").removeClass("in");
+		$("#menu5").removeClass("active");
+	}, 1200);
+
+    // initialize_owl($('#owl1'));
+
+    // $('a[href="#menu1"]').on('shown.bs.tab', function () {
+        // initialize_owl($('#owl1'));
+    // }).on('hide.bs.tab', function () {
+        // destroy_owl($('#owl1'));
+    // });
+
+    // $('a[href="#menu2"]').on('shown.bs.tab', function () {
+        // initialize_owl($('#owl2'));
+    // }).on('hide.bs.tab', function () {
+        // destroy_owl($('#owl2'));
+    // });
+
+    // $('a[href="#menu3"]').on('shown.bs.tab', function () {
+        // initialize_owl($('#owl3'));
+    // }).on('hide.bs.tab', function () {
+        // destroy_owl($('#owl3'));
+    // });
+
+    // $('a[href="#menu4"]').on('shown.bs.tab', function () {
+        // initialize_owl($('#owl4'));
+    // }).on('hide.bs.tab', function () {
+        // destroy_owl($('#owl4'));
+    // });
+});
+
+// function initialize_owl(el) {
+    // el.owlCarousel({
+        // loop: true,
+        // margin: 0,
+        // responsiveClass: true,
+        // autoWidth:true,
+        // responsive: {
+            // 0: {
+                // items: 2,
+                // nav: true
+            // },
+            // 600: {
+                // items: 2,
+                // nav: false
+            // },
+            // 1000: {
+                // items: 2,
+                // nav: true,
+                // loop: false
+            // }
+        // }
+    // });
+// }
+
+// function destroy_owl(el) {
+    // el.data('owlCarousel').destroy();
+// }
 </script>
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-<div class="modal-dialog">
 
-<!-- Modal content-->
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-<h4 class="modal-title">Modal Header</h4>
-</div>
-<div class="modal-body">
-<p>Some text in the modal.</p>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-</div>
-</div>
-
-</div>
-</div>

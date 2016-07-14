@@ -362,6 +362,12 @@ jQuery('#phone').keypress(function (event) {
         event.preventDefault();
     }
 });
+jQuery('#phone1').keypress(function (event) {
+    var keycode = event.which;
+    if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
+        event.preventDefault();
+    }
+});
 
 function enquiryval(){
 
@@ -432,10 +438,11 @@ if(data=='1')
 {
 var msg="Your Enquiry has been Sent.";
 jQuery(".enquire-form").removeClass('loading');
-jQuery("#success-msg").html('');  
+jQuery("#success-msg").html(''); 
+jQuery("#success-msg").show();
 jQuery("#success-msg").append(msg); 
 jQuery('#enquiry').find("input[type=text], textarea,select").val("");
-setTimeout(function(){ jQuery("#success-msg").html(''); }, 3000);
+setTimeout(function(){ jQuery("#success-msg").hide(); }, 3000);
 }
 },  
 error: function(errorThrown){  

@@ -2,7 +2,7 @@
 /* Template Name: Testimonials
  */
 get_header(); ?>
-
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.min.css">
 <!-- Banner Section Start -->
 <?php 
 global $post;
@@ -69,32 +69,54 @@ bcn_display();
 </ol>
 </div>
 
-<div class="tabbing row">
-<!-- Nav tabs -->
-<ul class="nav nav-tabs categories" role="tablist">
-<li class="active"><a href="javascript:void(0);" data-category="*">all</a></li>
-<li><a href="javascript:void(0);" data-category="services-tab">SERVICES</a></li>
-<li><a href="javascript:void(0);" data-category="engine-tab">Engines</a></li>
-<li><a href="javascript:void(0);" data-category="gearbox-tab">GEARBOXES</a></li>
-<li><a href="javascript:void(0);" data-category="parts-tab">Parts</a></li>
+<div class="testimonial-main">
+<?php 
+$terms = get_terms( array(
+    'taxonomy' => 'testimonial_categories',
+    'hide_empty' => true,
+     'orderby' => 'term_order'
+) );
+$noterms= sizeof($terms);
+foreach ( $terms as $term ) {
+$term_name[]= $term->name;
+$term_slug[]= $term->slug;
+}
+?>
+<ul class="nav nav-pills">
+<li class="active"><a data-toggle="pill" href="#menu0">all</a></li>
+<?php for($t=0; $t<$noterms; $t++) { ?>
+<li><a data-toggle="pill" href="#menu<?php echo $t+1; ?>"><?php echo $term_name[$t]; ?></a></li>
+<?php } ?>
 </ul>
 
-<!-- Tab panes -->
 <div class="tab-content">
-<div class="tab-pane active"> 
-    
-<div class="row filter-tab services-tab"> 
 <?php 
+for($k=0;$k<$noterms+1;$k++)    
+{  
+if($k==0){ $class="in active"; } 
+else{ $class=""; }
+    ?>
+<div id="menu<?php echo $k; ?>" class="tab-pane fade <?php echo $class; ?>">
+<?php 
+if($k==0)
+{
+$args = array(
+'post_type'   => 'testimonial',
+);
+}
+else{
 $args = array(
 'post_type'   => 'testimonial',
 'tax_query' => array(
 array(
 'taxonomy' => 'testimonial_categories',
 'field'    => 'slug',
-'terms'    => 'services'
+'terms'    => $term_slug[$k-1]
 )
-)
+)    
 );
+}
+
 $the_query = new WP_Query( $args );
 $i=0;
 // The Loop
@@ -105,52 +127,52 @@ $the_query->the_post();
 $id=get_the_ID();
 
 ?>
-<div class='indv-testimonials'> <!-- Individual Testimonial Start Here -->  
-<div class="slider col-md-7">
-<div id="slider-<?php echo $i;?>" class="flexslider slide-img">
-<ul class="slides">
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed0.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed1.jpg" />
-</li>	
-</ul>
+<article>
+<div class="testimonial-inner">
+<div class="testimonial-slider">
+<div id="myCarouseltestimonial<?php echo $i; ?>" class="carousel slide" data-ride="carousel">
+<!-- Wrapper for slides -->
+<div class="carousel-inner" role="listbox">
+<!-- Left and right controls -->
+<a class="left carousel-control" href="#myCarouseltestimonial<?php echo $i; ?>" role="button" data-slide="prev">
+<i class="fa fa-chevron-left" aria-hidden="true"></i>
+</a>
+<a class="right carousel-control" href="#myCarouseltestimonial<?php echo $i; ?>" role="button" data-slide="next">
+<i class="fa fa-chevron-right" aria-hidden="true"></i>
+</a>
+<div class="item active" style="background-image:url('http://www.alldrivesubaru.com.au/wp-content/themes/subaru/images/testimonial/Testimonials_img.jpg');">
 </div>
-    
-<div id="carousel-<?php echo $i;?>" class="flexslider slide-thumnail">
-<ul class="slides">
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed0.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed1.jpg" />
-</li>		
-</ul>
+<div class="item" style="background-image:url('http://www.alldrivesubaru.com.au/wp-content/themes/subaru/images/testimonial/Testimonials_img.jpg');">
 </div>
-</div> <!--col-dm-7-->
+<div class="item" style="background-image:url('http://www.alldrivesubaru.com.au/wp-content/themes/subaru/images/testimonial/Testimonials_img.jpg');">
+</div>
+</div>
 
-<div class="col-md-5">
-<div class="tittle-date">
-<h3><?php echo get_the_title(); ?></h3> 
-<div class="date-calender">
-<?php echo get_the_date('m/d/Y'); ?>
+<div class="content">
+<ol class="carousel-indicators ">
+<li data-target="#myCarouseltestimonial<?php echo $i; ?>" data-slide-to="0" class="active" style="background-image:url('http://www.alldrivesubaru.com.au/wp-content/themes/subaru/images/testimonial/Testimonials_img.jpg');"></li>
+<li data-target="#myCarouseltestimonial<?php echo $i; ?>" data-slide-to="1" style="background-image:url('http://www.alldrivesubaru.com.au/wp-content/themes/subaru/images/testimonial/Testimonials_img0.jpg');"></li>
+<li data-target="#myCarouseltestimonial<?php echo $i; ?>" data-slide-to="2" style="background-image:url('http://www.alldrivesubaru.com.au/wp-content/themes/subaru/images/testimonial/Testimonials_img1.jpg');"></li>
+</ol>
 </div>
+</div>
+</div>
+<div class="testimonial-descp">
+<div class="tittle-date"><h3><?php echo get_the_title(); ?></h3> 
+<div class="date-calender"><?php echo get_the_date('m/d/Y'); ?></div>
 </div> <!--tittle-date-->
+
 <h4><?php echo get_post_meta($id,"client_role",true); ?></h4>
-<?php echo get_excerpt(); ?>....<a class="link" href="<?php echo get_the_permalink($id); ?>">[+]</a>
+<p><?php echo get_excerpt(); ?>....<a class="link" href="<?php echo get_the_permalink($id); ?>">[+]</a></p>
+
 <div class="tags-section">
+<h5>Tags :</h5>
 <?php echo get_the_term_list( $id, 'tags_testimonial', '<ul><li>', '</li><li>', '</li></ul>' ); ?>
 </div> 
-</div>  <!--col-md-5-->
+</div>
+</div>
+</article>
 
-</div>  <!-- Indv End -->   
 <?php
 $i++;
 }
@@ -159,249 +181,12 @@ else {echo 'No Testimonials Found.';}
 /* Restore original Post Data */
 wp_reset_postdata();
 ?>
-</div> <!--row Close-->  
-
-<div class="row filter-tab engine-tab"> <!-- Engine Tab Start Here -->
-<?php 
-$args = array(
-'post_type'   => 'testimonial',
-'tax_query' => array(
-array(
-'taxonomy' => 'testimonial_categories',
-'field'    => 'slug',
-'terms'    => 'engines'
-)
-)
-);
-$the_query = new WP_Query( $args );
-
-// The Loop
-if ( $the_query->have_posts() ) {
-$j=0;
-while ( $the_query->have_posts() ) {
-$the_query->the_post();
-$id=get_the_ID();
-
-?>
-<div class='indv-testimonials'> <!-- Individual Testimonial Start Here -->  
-<div class="slider col-md-7">
-<div id="slider-<?php echo $j; ?>" class="flexslider slide-img">
-<ul class="slides">
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed0.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed1.jpg" />
-</li>	
-</ul>
 </div>
-    
-<div id="carousel-<?php echo $j; ?>" class="flexslider slide-thumnail">
-<ul class="slides">
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed0.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed1.jpg" />
-</li>		
-</ul>
-</div>
-</div> <!--col-dm-7-->
-
-<div class="col-md-5">
-<div class="tittle-date">
-<h3><?php echo get_the_title(); ?></h3> 
-<div class="date-calender">
-<?php echo get_the_date('m/d/Y'); ?>
-</div>
-</div> <!--tittle-date-->
-<h4><?php echo get_post_meta($id,"client_role",true); ?></h4>
-<?php echo get_excerpt(); ?>....<a class="link" href="<?php echo get_the_permalink($id); ?>">[+]</a>
-<div class="tags-section">
-<?php echo get_the_term_list( $id, 'tags_testimonial', '<ul><li>', '</li><li>', '</li></ul>' ); ?>
-</div> 
-</div>  <!--col-md-5-->
-
-</div>  <!-- Indv End -->   
-<?php
-$j++;
-}
-}
-else {echo 'No Testimonials Found.';}
-/* Restore original Post Data */
-wp_reset_postdata();
-?>
-</div> <!--row Close-->  
-
-<div class="row filter-tab gearbox-tab"> 
-<?php 
-$args = array(
-'post_type'   => 'testimonial',
-'tax_query' => array(
-array(
-'taxonomy' => 'testimonial_categories',
-'field'    => 'slug',
-'terms'    => 'gearboxes'
-)
-)
-);
-$the_query = new WP_Query( $args );
-
-// The Loop
-if ( $the_query->have_posts() ) {
-$k=0;
-while ( $the_query->have_posts() ) {
-$the_query->the_post();
-$id=get_the_ID();
-
-?>
-<div class='indv-testimonials'> <!-- Individual Testimonial Start Here -->  
-<div class="slider col-md-7">
-<div id="slider-<?php echo $k; ?>" class="flexslider slide-img">
-<ul class="slides">
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed0.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed1.jpg" />
-</li>	
-</ul>
-</div>
-    
-<div id="carousel-<?php echo $k; ?>" class="flexslider slide-thumnail">
-<ul class="slides">
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed0.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed1.jpg" />
-</li>		
-</ul>
-</div>
-</div> <!--col-dm-7-->
-
-<div class="col-md-5">
-<div class="tittle-date">
-<h3><?php echo get_the_title(); ?></h3> 
-<div class="date-calender">
-<?php echo get_the_date('m/d/Y'); ?>
-</div>
-</div> <!--tittle-date-->
-<h4><?php echo get_post_meta($id,"client_role",true); ?></h4>
-<?php echo get_excerpt(); ?>....<a class="link" href="<?php echo get_the_permalink($id); ?>">[+]</a>
-<div class="tags-section">
-<?php echo get_the_term_list( $id, 'tags_testimonial', '<ul><li>', '</li><li>', '</li></ul>' ); ?>
-</div> 
-</div>  <!--col-md-5-->
-
-</div>  <!-- Indv End -->   
-<?php
-$k++;
-}
-}
-else {echo 'No Testimonials Found.';}
-/* Restore original Post Data */
-wp_reset_postdata();
-?>
-</div> <!--row Close-->  
-
-<div class="row filter-tab parts-tab"> 
-<?php 
-$args = array(
-'post_type'   => 'testimonial',
-'tax_query' => array(
-array(
-'taxonomy' => 'testimonial_categories',
-'field'    => 'slug',
-'terms'    => 'parts'
-)
-)
-);
-$the_query = new WP_Query( $args );
-
-// The Loop
-if ( $the_query->have_posts() ) {
-$l=0;
-while ( $the_query->have_posts() ) {
-$the_query->the_post();
-$id=get_the_ID();
-?>
-<div class='indv-testimonials'> <!-- Individual Testimonial Start Here -->  
-<div class="slider col-md-7">
-<div id="slider-<?php echo $l; ?>" class="flexslider slide-img">
-<ul class="slides">
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed0.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed1.jpg" />
-</li>	
-</ul>
-</div>
-    
-<div id="carousel-<?php echo $l; ?>" class="flexslider slide-thumnail">
-<ul class="slides">
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed0.jpg" />
-</li>
-<li>
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/testimonial/bruce-feed1.jpg" />
-</li>		
-</ul>
-</div>
-</div> <!--col-dm-7-->
-
-<div class="col-md-5">
-<div class="tittle-date">
-<h3><?php echo get_the_title(); ?></h3> 
-<div class="date-calender">
-<?php echo get_the_date('m/d/Y'); ?>
-</div>
-</div> <!--tittle-date-->
-<h4><?php echo get_post_meta($id,"client_role",true); ?></h4>
-<?php echo get_excerpt(); ?>....<a class="link" href="<?php echo get_the_permalink($id); ?>">[+]</a>
-<div class="tags-section">
-<?php echo get_the_term_list( $id, 'tags_testimonial', '<ul><li>', '</li><li>', '</li></ul>' ); ?>
-</div> 
-</div>  <!--col-md-5-->
-
-</div>  <!-- Indv End -->   
-<?php
-$l++;
-}
-}
-else {echo 'No Testimonials Found.';}
-/* Restore original Post Data */
-wp_reset_postdata();
-?>
-
-</div>   
-
-</div> <!--tab-pane Close-->
+<?php } ?>
 
 </div>
 
 </div>
-
-
 
 </div> <!--opportunities Close-->
 </div>
@@ -417,3 +202,12 @@ wp_reset_postdata();
 <!-- Client logo's Section End -->
 
 <?php get_footer(); ?>
+<script src="http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+(function ($) {
+jQuery(window).on("load", function () {
+jQuery(".content").mCustomScrollbar();
+axis: "y"
+});
+})(jQuery);
+</script>

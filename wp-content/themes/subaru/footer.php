@@ -83,13 +83,14 @@ echo '</ul>';}
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.min.js"></script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/owl.carousel.min.js"></script>
-
+<?php if(!is_page(85)){ ?>
 <script defer src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.flexslider.js"></script>
-<?php if(is_page(85))
+
+<?php } if(is_page(85))
 { ?>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/testimonial.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.isotope.min.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.categories.js"></script>
+<!--<script src="<?php //echo get_stylesheet_directory_uri(); ?>/js/testimonial.js"></script>
+<script src="<?php //echo get_stylesheet_directory_uri(); ?>/js/jquery.isotope.min.js"></script>-->
+<!--<script src="<?php //echo get_stylesheet_directory_uri(); ?>/js/jquery.categories.js"></script>-->
 <?php } ?>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/custom.js"></script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.mCustomScrollbar.min.js"></script>
@@ -136,6 +137,31 @@ always_visible: jQuery('#container')
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/wow.min.js"></script>
 <script>
 new WOW().init();
+</script>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+jQuery('#service').trigger('click');    
+});    
+jQuery(".link").click(function(){
+jQuery("a.active").removeClass("active");
+jQuery(this).addClass("active");
+});
+function get_record(id)
+{
+jQuery.ajax({
+type: "POST", 
+url:"<?php echo get_stylesheet_directory_uri(); ?>/ajax/tesmonails.php",
+data:{id:id,format:'raw'},
+success:function(resp){
+if( resp !="") 
+{
+// alert(resp);
+jQuery('#engine-testi').empty().append(resp);
+}
+
+}
+});
+}
 </script>
 </body>
 
