@@ -3369,6 +3369,7 @@ html[xmlns] .flexslider .slides {
     font-family: "AgencyBold";
     font-size: 35px;
     padding: 12px 25px;
+    cursor: default;
 }
 
 .teams-section .panel-group .panel.panel-default .panel-collapse .panel-body {
@@ -3442,19 +3443,19 @@ html[xmlns] .flexslider .slides {
 }
 
 .teams-section .panel-group .panel-heading a::after {
-    content: "";
+    /**content: "";
     float: right;
     font-family: "FontAwesome";
     font-size: 18px;
-    line-height: 35px;
+    line-height: 35px;**/
 }
 
 .teams-section .panel-group .panel-heading a.collapsed::after {
-    content: "";
+    /**content: "";
     float: right;
     font-family: "FontAwesome";
     font-size: 18px;
-    line-height: 35px;
+    line-height: 35px;**/
 }
 
 

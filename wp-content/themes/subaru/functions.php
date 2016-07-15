@@ -466,12 +466,12 @@ register_taxonomy( 'categories_services', array( 'services' ), $args );
 add_action( 'init', 'create_services_taxonomies', 0 );
 
 /* create excerpt for services */
-function get_excerpt(){
+function get_excerpt($length){
 $excerpt = get_the_content();
 $excerpt = preg_replace(" (\[.*?\])",'',$excerpt);
 $excerpt = strip_shortcodes($excerpt);
 $excerpt = strip_tags($excerpt);
-$excerpt = substr($excerpt, 0, 400);
+$excerpt = substr($excerpt, 0, $length);
 $excerpt = substr($excerpt, 0, strripos($excerpt, " "));
 $excerpt = trim(preg_replace( '/\s+/', ' ', $excerpt));
 $excerpt = $excerpt;
@@ -991,3 +991,62 @@ $sent=wp_mail( 'akanksha.gupta@imarkinfotech.com', $subject, $body, $headers );
 // creating Ajax call for WordPress  
 add_action( 'wp_ajax_nopriv_enquirymail', 'enquirymail' );  
 add_action( 'wp_ajax_enquirymail', 'enquirymail' );
+
+/**** Create Subapedia Post ****/
+
+add_action( 'init', 'create_subapedia' );
+function create_subapedia() {
+register_post_type( 'subapedia',
+array(
+'labels' => array(
+'name' => 'Subapedia',
+'singular_name' => 'subapedia',
+'add_new' => 'Add New',
+'add_new_item' => 'Add New Subapedia',
+'edit' => 'Edit',
+'edit_item' => 'Edit New Subapedia ',
+'new_item' => 'New  Subapedia',
+'view' => 'View',
+'view_item' => 'View  Subapedia',
+'search_items' => 'Search  Subapedia',
+'not_found' => 'No  Subapedia Found',
+'not_found_in_trash' => 'No Subapedia found in Trash',
+'parent' => 'Parent Main Subapedia'
+),
+
+'public' => true,
+'menu_position' => 15,
+'supports' => array( 'title', 'editor', 'comments', 'thumbnail', 'custom-fields' ),
+'taxonomies' => array( '' ),
+
+'has_archive' => true
+)
+);
+} 
+function create_subapedia_taxonomies() {
+$labels = array(
+'name'              => _x( 'Categories', 'taxonomy general name' ),
+'singular_name'     => _x( 'Category', 'taxonomy singular name' ),
+'search_items'      => __( 'Search Categories' ),
+'all_items'         => __( 'All Categories' ),
+'parent_item'       => __( 'Parent Category' ),
+'parent_item_colon' => __( 'Parent Category:' ),
+'edit_item'         => __( 'Edit Category' ),
+'update_item'       => __( 'Update Category' ),
+'add_new_item'      => __( 'Add New Category' ),
+'new_item_name'     => __( 'New Category Name' ),
+'menu_name'         => __( 'Categories' ),
+); 
+
+$args = array(
+'hierarchical'      => true, // Set this to 'false' for non-hierarchical taxonomy (like tags)
+'labels'            => $labels,
+'show_ui'           => true,
+'show_admin_column' => true,
+'query_var'         => true, 
+'rewrite'           => array( 'slug' => 'subapedia_cat' ),
+);
+
+register_taxonomy( 'subapedia_categories', array( 'subapedia' ), $args );
+}
+add_action( 'init', 'create_subapedia_taxonomies', 0 );

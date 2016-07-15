@@ -173,7 +173,7 @@ jQuery(function(){
    
 
 });		
-jQuery(document).ready(function(){		jQuery("a.custom-toggle").click(function(){			jQuery(this).toggleClass('collapsed').parent().parent().next().slideToggle('slow');		})	})
+//jQuery(document).ready(function(){		jQuery("a.custom-toggle").click(function(){			jQuery(this).toggleClass('collapsed').parent().parent().next().slideToggle('slow');		})	})
 
 		
 	

@@ -86,11 +86,6 @@ echo '</ul>';}
 <?php if(!is_page(85)){ ?>
 <script defer src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.flexslider.js"></script>
 
-<?php } if(is_page(85))
-{ ?>
-<!--<script src="<?php //echo get_stylesheet_directory_uri(); ?>/js/testimonial.js"></script>
-<script src="<?php //echo get_stylesheet_directory_uri(); ?>/js/jquery.isotope.min.js"></script>-->
-<!--<script src="<?php //echo get_stylesheet_directory_uri(); ?>/js/jquery.categories.js"></script>-->
 <?php } ?>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/custom.js"></script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.mCustomScrollbar.min.js"></script>

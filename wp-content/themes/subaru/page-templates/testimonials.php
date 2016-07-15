@@ -163,7 +163,7 @@ $id=get_the_ID();
 </div> <!--tittle-date-->
 
 <h4><?php echo get_post_meta($id,"client_role",true); ?></h4>
-<p><?php echo get_excerpt(); ?>....<a class="link" href="<?php echo get_the_permalink($id); ?>">[+]</a></p>
+<p><?php echo get_excerpt(400); ?>....<a class="link" href="<?php echo get_the_permalink($id); ?>">[+]</a></p>
 
 <div class="tags-section">
 <h5>Tags :</h5>

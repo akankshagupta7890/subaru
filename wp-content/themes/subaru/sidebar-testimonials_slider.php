@@ -24,8 +24,6 @@ else{$id='';}
 <div id="engine-testi">
 <?php
 echo $thecatid = get_query_var('cat'); echo $thecatid;
-if($thecatid){echo $thecatid;}
-else{echo 'test'; }
 global $post;
 query_posts('post_type=testimonial&showposts=15&cat='.$thecatid.'order=desc');
 $i=1;

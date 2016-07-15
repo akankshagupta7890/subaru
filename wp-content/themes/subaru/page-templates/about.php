@@ -146,6 +146,7 @@ $args = array(
 );
 $categories = get_categories( $args );
 $i=1;
+$j=1;
 foreach ( $categories as $category )
 {
 
@@ -175,7 +176,7 @@ array(
 //'orderby' => 'title',
 'order' => 'ASC')
 );
-$j=1;
+
 foreach($posts as $post)
 { setup_postdata( $post ); 
  ?> 	
@@ -221,7 +222,18 @@ else
   <h4 class="modal-title"><?php echo get_the_title($post_id);?> <small><?php the_field('designation'); ?></small> </h4>
  
 <p><?php echo get_the_content($post_id); ?></p>    
-</div>    
+</div>
+    
+    <div class="call-to-act-btn">
+        <ul>
+            <li><a href="#" class="cta-btn">Send an enquiry to Niazi</a></li>
+            <li><a href="tel:029915 9900" class="cta-btn">Call us on 02 9915 9900</a></li>
+        </ul>
+    
+    </div>
+    
+    
+    
 </div>
 
 </div>

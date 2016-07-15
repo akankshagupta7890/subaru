@@ -75,29 +75,26 @@ else{ ?>
 if(get_post_meta($post->ID,"cont_phone",true)) {
 ?>
 <li>
-Phone <a href="tel:<?php echo get_post_meta($post->ID,"cont_phone",true); ?>"><?php echo get_post_meta($post->ID,"cont_phone",true); ?></a>
+Phone +61 <a href="tel:<?php echo get_post_meta($post->ID,"cont_phone",true); ?>"><span><?php echo get_post_meta($post->ID,"cont_phone",true); ?></span></a>
 </li>
 <?php } 
 if(get_post_meta($post->ID,"cont_fax",true)) {
 ?>
 <li>
-Fax <?php echo get_post_meta($post->ID,"cont_fax",true); ?>
+Fax +61 <span><?php echo get_post_meta($post->ID,"cont_fax",true); ?></span>
 </li>
 <?php } ?>
-</ul>
-</div>
+
 <?php if(get_post_meta($post->ID,"24_hrs_service",true)) { ?>
-<div class="loca-info-cvr">
-<p><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/contact/clock-24-icon.png" class="img-responsive clock-24-icon"><?php echo get_post_meta($post->ID,"24_hrs_service",true); ?></p>
-</div>
+<li><?php echo get_post_meta($post->ID,"24_hrs_service",true); ?></li>
 <?php } ?>
-<div class="loca-info-cvr">
-<ul class="cont-mail">
+
 <?php if(get_post_meta($post->ID,"admin_&_accounts",true)){ ?>    
 <li>Admin & Accounts – <a href="mailto:<?php echo get_post_meta($post->ID,"admin_&_accounts",true); ?>"><?php echo get_post_meta($post->ID,"admin_&_accounts",true); ?></a></li>
 <?php } if(get_post_meta($post->ID,"sales_&_technical",true)){ ?>
 <li>Sales & Technical – <a href="mailto:<?php echo get_post_meta($post->ID,"sales_&_technical",true); ?>"><?php echo get_post_meta($post->ID,"sales_&_technical",true); ?></a></li>
 <?php } ?>
+
 </ul>
 </div>
 
@@ -149,7 +146,7 @@ if($url1!="") { ?>
  $field_name=$k.'_reason';
 ?>    
 <?php if(get_post_meta($post->ID,$field_name,true)){ ?>
-<li class="wow flipInX" data-wow-duration="2s"><?php echo get_post_meta($post->ID,$field_name,true); ?></li>
+<li class="wow fadeIn" data-wow-duration="1.4s"><?php echo get_post_meta($post->ID,$field_name,true); ?></li>
 <?php } 
 }
 ?>
