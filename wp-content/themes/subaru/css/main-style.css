@@ -1986,6 +1986,35 @@ div.wpcf7 img.ajax-loader {
     -ms-transform: scale(1.0);
 }
 
+.tax-subapedia_categories .pagination {
+clear:both !important;
+padding:20px 0 !important;
+position:relative !important;
+font-size:11px !important;
+line-height:13px !important;
+}
+ 
+.tax-subapedia_categories .pagination span, .pagination a {
+display:block !important;
+float:left !important;
+margin: 2px 2px 2px 0 !important;
+padding:6px 9px 5px 9px !important;
+text-decoration:none !important;
+width:auto !important;
+color:#fff !important;
+background: #555 !important;
+}
+ 
+.tax-subapedia_categories .pagination a:hover{
+color:#fff !important;
+background: #3279BB !important;
+}
+ 
+.tax-subapedia_categories .pagination .current{
+padding:6px 9px 5px 9px !important;
+background: #3279BB !important;
+color:#fff !important;
+}
 
 @media(min-width:1600px){
     

@@ -2,7 +2,7 @@
 /* Template Name: Testimonials
  */
 get_header(); ?>
-<link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.min.css">
+
 <!-- Banner Section Start -->
 <?php 
 global $post;
@@ -10,8 +10,7 @@ while (have_posts()) : the_post();
 $post_id= $post->ID;
 $banner = get_post_meta($post->ID,"banner_image",true);
 $image = wp_get_attachment_image_src($banner,'banner_image');
-echo $url = $image[0];
-
+$url = $image[0];
 if($url!="") 
 {
 ?>
@@ -57,12 +56,6 @@ else
 <div class="container">
 <div class="opportunities">
 <div class="testimonial-breadcrumb breadcrumb-container">
-<?php /*<div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
-<?php  if(function_exists('bcn_display'))
-{
-bcn_display();
-} ?>
-</div> */ ?>
 <ol class="breadcrumb">
 <li><a href="<?php echo site_url(); ?>">Home</a></li>
 <li class="active">Testimonials</li>
@@ -72,9 +65,9 @@ bcn_display();
 <div class="testimonial-main">
 <?php 
 $terms = get_terms( array(
-    'taxonomy' => 'testimonial_categories',
-    'hide_empty' => true,
-     'orderby' => 'term_order'
+'taxonomy' => 'testimonial_categories',
+'hide_empty' => true,
+'orderby' => 'term_order'
 ) );
 $noterms= sizeof($terms);
 foreach ( $terms as $term ) {
@@ -95,7 +88,7 @@ for($k=0;$k<$noterms+1;$k++)
 {  
 if($k==0){ $class="in active"; } 
 else{ $class=""; }
-    ?>
+?>
 <div id="menu<?php echo $k; ?>" class="tab-pane fade <?php echo $class; ?>">
 <?php 
 if($k==0)
@@ -119,14 +112,12 @@ array(
 
 $the_query = new WP_Query( $args );
 $i=0;
-// The Loop
 if ( $the_query->have_posts() ) {
-
 while ( $the_query->have_posts() ) {
 $the_query->the_post();
 $id=get_the_ID();
-
 ?>
+    
 <article>
 <div class="testimonial-inner">
 <div class="testimonial-slider">
@@ -172,7 +163,6 @@ $id=get_the_ID();
 </div>
 </div>
 </article>
-
 <?php
 $i++;
 }
@@ -183,31 +173,14 @@ wp_reset_postdata();
 ?>
 </div>
 <?php } ?>
-
 </div>
-
 </div>
-
 </div> <!--opportunities Close-->
-</div>
-<!-- Testimonials Section End -->
-
-
+</div> <!-- Testimonials Section End -->
 <?php endwhile; ?>
-
 <div class="clearfix"></div>
 
-<!-- Client logo's Section -->
-<?php get_sidebar('brands'); ?>
-<!-- Client logo's Section End -->
+<?php get_sidebar('brands'); ?> <!-- Client logo's Section -->
 
 <?php get_footer(); ?>
-<script src="http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.concat.min.js"></script>
-<script>
-(function ($) {
-jQuery(window).on("load", function () {
-jQuery(".content").mCustomScrollbar();
-axis: "y"
-});
-})(jQuery);
-</script>
+

@@ -1,63 +1,45 @@
 <script>
-        jQuery(document).ready(function () {
+jQuery(document).ready(function () {
 
-            jQuery("#engine-testi-inner").owlCarousel({
+jQuery("#engine-testi-inner").owlCarousel({
 
-                autoPlay: 3000, //Set AutoPlay to 3 seconds
+autoPlay: 3000, //Set AutoPlay to 3 seconds
 
-                items: 2,
-                itemsDesktop: [1199, 2],
-                itemsDesktopSmall: [979, 1]
+items: 2,
+itemsDesktop: [1199, 2],
+itemsDesktopSmall: [979, 1]
 
-            });
-
-
-
-
-        });
-    </script> 
+});
+});
+</script> 
 <?php
-
 $id=$_POST['id'];	 
-	 
 include('../../../../wp-config.php');
 $term = get_term( $id, 'testimonial_categories' );	 
-// echo "<pre>";
-// print_r($term); 
-// echo "</pre>";
+$args = array('post_type' => 'testimonial',
+'tax_query' => array(
+array(
+'taxonomy' => 'testimonial_categories',
+'field' => 'slug',
+'terms' => $term->slug,
+),
+),
+);
 
- $args = array('post_type' => 'testimonial',
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'testimonial_categories',
-                'field' => 'slug',
-                'terms' => $term->slug,
-            ),
-        ),
-     );
-
-     $loop = new WP_Query($args);
-	
-	 
+$loop = new WP_Query($args); 
 ?>
+<div id="engine-testi-inner">
+<?php  while($loop->have_posts()) : $loop->the_post(); ?>
 
-    
-	<div id="engine-testi-inner">
-	<?php  while($loop->have_posts()) : $loop->the_post(); ?>
-	
-					<div class="item">
-                            <div class="engine-testi-text">
-                                 <?php echo get_the_content() ?>
+<div class="item">
+<div class="engine-testi-text">
+<?php echo get_the_content() ?>
+<div class="engine-testi-name">
+<h4>Michael Zagami </h4>
+<p>Client Role (If any)</p>
+</div>
+</div>
+</div>
+<?php  endwhile; ?>
+</div>
 
-                                <div class="engine-testi-name">
-                                    <h4>Michael Zagami </h4>
-                                    <p>Client Role (If any)</p>
-                                </div>
-
-                            </div>
-                        </div>
-						<?php  endwhile; ?>
-
-               </div>
-  
-	

@@ -41,17 +41,19 @@ $post_id=get_the_ID();
 <?php 
 $k++;
 }
+wp_reset_postdata();
 }  
 
 ?>
 </div> <!--row Close-->
 
 <div class="row">
-<div id="loading_sec" style="display:none" align="center">
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/loader.gif" id="loader">
-</div>
-<input type="hidden" name="page_val" id="page_val" value="1">
-<div class="col-xs-12"><a class="custom bg bg_grn inner_pages loadmore" onclick="pagination();"><span class="plus-btn"><i class="mor-plus"></i></span></a><hr></div>    
+<!--<div id="loading_sec" style="display:none" align="center">
+<img src="<?php //echo get_stylesheet_directory_uri(); ?>/images/loader.gif" id="loader">
+</div>-->
+<!--<input type="hidden" name="page_val" id="page_val" value="1">-->
+<!--<div class="col-xs-12"><a class="custom bg bg_grn inner_pages loadmore" onclick="pagination();"><span class="plus-btn"><i class="mor-plus"></i></span></a><hr></div>    -->
+<div class="col-xs-12"><a class="custom bg bg_grn inner_pages loadmore"><span class="plus-btn"><i class="mor-plus"></i></span></a><hr></div>
 </div>  
 
 </div>

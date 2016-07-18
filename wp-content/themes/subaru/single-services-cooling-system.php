@@ -59,7 +59,8 @@ else{ ?>
 <li><a href="<?php echo get_permalink(122); ?>">Services</a></li>
 <?php $cat=get_the_terms($post_id, 'categories_services'); 
 $cat11=$cat[0]; ?>
-<li><a href="<?php echo get_permalink(122); ?>"><?php echo $cat11->name; ?></a></li>
+<li><?php echo $cat11->name; ?></li>
+<!--<li><a href="<?php //echo get_permalink(122); ?>"><?php //echo $cat11->name; ?></a></li>-->
 <li class="active"><?php echo get_the_title($post_id); ?></li>
 </ol>
 </div>    
@@ -349,14 +350,9 @@ Repair Kits Supplied</h3>
 </div>
 
 
-</div> <!--online-seciton-->
+</div> 
 
-<!----Logo carousel Start---->
-
-<!-- Client logo's Section -->
-<?php get_sidebar('brands'); ?>
-<!-- Client logo's Section End -->
-
+<?php get_sidebar('brands'); ?><!-- Client logo's Section -->
 
 <?php get_footer(); ?>
 

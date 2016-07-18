@@ -1,15 +1,18 @@
 <?php
 /**
-* The template part for displaying single posts
-*
-* @package WordPress
-* @subpackage Twenty_Sixteen
-* @since Twenty Sixteen 1.0
-*/
-?>
+ * The template for displaying all single posts and attachments
+ *
+ * @package WordPress
+ * @subpackage Twenty_Sixteen
+ * @since Twenty Sixteen 1.0
+ */
 
-<!--- Banner Section start here ---->
+get_header(); ?>
+
 <?php 
+while ( have_posts() ) : the_post();
+global $postid;
+$postid = get_the_ID();
 $post_id= get_the_ID();
 $banner = get_post_meta($post->ID,"banner_image",true);
 $image = wp_get_attachment_image_src($banner,'full');
@@ -87,28 +90,82 @@ echo $fname.' '.$lname;
     
 <div class="row mk00">
 <div class="col-xs-12 col-md-7 news-section">
-<?php the_content(); ?>
-
-<div class="row mk11">
-<div class="col-xs-12 col-sm-4">
-<button type="button" class="btn btn-default btn-quote quote">Get A Quote</button>
-</div> <!--col-xs-12 col-sm-4-->
-<div class="col-xs-12 col-sm-4">
-<a href='tel:+(02) 9915 9900' class="btn btn-default btn-quote helpline">(02) 9915 9900</a>
-</div> <!--col-xs-12 col-sm-4--> 
-<div class="col-xs-12 col-sm-4">
-<a href="tel:+0414 821 427" class="btn btn-default btn-quote helpline">0414 821 427</a>
-</div> <!--col-xs-12 col-sm-4-->
-</div>  <!--row-->
-
+<?php echo get_the_content(); ?>
 </div> <!--col-xs-12 col-md-7--->
-
-
 
 <?php get_sidebar('subapedia'); ?>
 </div> <!--row-->
 
+
+
 </div> <!--opportunities Close-->
 </div>
+<div class="repair-dpf">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-md-4"> 
+<?php 
+$imgsrc11= get_post_meta($post_id,"pdf_image",true); 
+$pdf_src = wp_get_attachment_image_src($imgsrc11,'full');
+$imgsrc = $pdf_src[0];
+if($imgsrc)
+{ ?>
+<img src="<?php echo $imgsrc; ?>">      
+<?php }
+else{ ?>
+<img src="https://placeholdit.imgix.net/~text?txtsize=74&txt=1500%C3%97296&w=442&h=434">    
+<?php }
+?>
+    
+</div>
+<div class="col-xs-12 col-md-8">
+<?php echo get_post_meta($post_id,"pdf_description",true); ?>
+</div>
+<div class="col-xs-12">
+<div class="row">
+<div class="col-xs-12 col-sm-4">
+<button type="button" class="btn btn-default btn-quote quote">Get A Quote</button>
+</div> <!--col-xs-12 col-sm-4-->
+<div class="col-xs-12 col-sm-4">
+<a href="tel:+(02) 9915 9900" class="btn btn-default btn-quote helpline">(02) 9915 9900</a>
+</div> <!--col-xs-12 col-sm-4--> 
+<div class="col-xs-12 col-sm-4">
+<a href="tel:+0414 821 427" class="btn btn-default btn-quote helpline">0414 821 427</a>
+</div> <!--col-xs-12 col-sm-4-->
+</div>
+</div> 
+</div> <!--row Close-->
+</div>
+</div>
+<?php endwhile; ?>
+<?php get_sidebar('latest_posts'); ?> <!-- Latest Posts -->
+<?php get_sidebar('subapedia_slider'); ?> <!-- Subapedia Slider -->
+<?php get_sidebar('departments'); ?> <!-- Four Listing Departments -->
+<?php get_sidebar('testimonials_slider'); ?> <!-- Testimonials Slider -->
 
+<div class="container">
+<div class="reply-form">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+<?php    
+//Gather comments for a specific page/post 
+$comments = get_comments(array(
+'post_id' => $postid,
+'status' => 'approve' //Change this to the type of comments to be displayed
+));
 
+//Display the list of comments
+wp_list_comments(array(
+'per_page' => 10, //Allow comment pagination
+'reverse_top_level' => false //Show the latest comments at the top of the list
+), $comments);
+
+comment_form( $comments, $postid );
+?>
+</div> 
+</div>
+</div> <!--reply-form-->
+</div>
+
+<?php get_sidebar('brands'); ?> <!-- Client logo's Section -->
+<?php get_footer(); ?>

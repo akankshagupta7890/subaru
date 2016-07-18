@@ -18,10 +18,10 @@ if($k==1){$active='active';}else{$active='';}
 <div class="container">
 <div class="row">
 <div class="col-md-5">
-<?php if(get_the_post_thumbnail()){ echo get_the_post_thumbnail();}
-    else{ ?>
-    <img src="https://placeholdit.imgix.net/~text?txtsize=74&txt=No Image&w=599&h=541" alt="<?php the_title();?>">
-   <?php } ?>
+<?php if(get_the_post_thumbnail()){ echo get_the_post_thumbnail(get_the_ID(),'team_slider');}
+else{ ?>
+<img src="https://placeholdit.imgix.net/~text?txtsize=74&txt=No Image&w=350&h=300" alt="<?php the_title();?>">
+<?php } ?>
 </div>
 <div class="col-md-7 col-md-offset-5">
 <h2><?php the_title(); ?></h2>
@@ -36,8 +36,8 @@ if($k==1){$active='active';}else{$active='';}
 <?php 
 $k++;
 }
-	/* Restore original Post Data */
-	wp_reset_postdata();
+/* Restore original Post Data */
+wp_reset_postdata();
 }  ?>
 
 </div>

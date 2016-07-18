@@ -1,11 +1,11 @@
 <?php 
 /**
- * The template for displaying all single posts and attachments
- *
- * @package WordPress
- * @subpackage Twenty_Sixteen
- * @since Twenty Sixteen 1.0
- */
+* The template for displaying all single posts and attachments
+*
+* @package WordPress
+* @subpackage Twenty_Sixteen
+* @since Twenty Sixteen 1.0
+*/
 get_header(); ?>
 
 <!--- Banner Section start here ---->
@@ -16,9 +16,9 @@ $image = wp_get_attachment_image_src($banner,'full');
 $url = $image[0];
 if($url!="") 
 {
-    if($post_id==100){$background="background-position:left center;";}
-    else if($post_id==99 || $post_id==102 || $post_id==104 || $post_id==105 || $post_id==106 || $post_id==109){$background="background-position:center center;";}
-    else{$background="background-position:72% 50%;";}
+if($post_id==100){$background="background-position:left center;";}
+else if($post_id==99 || $post_id==102 || $post_id==104 || $post_id==105 || $post_id==106 || $post_id==109){$background="background-position:center center;";}
+else{$background="background-position:72% 50%;";}
 ?>
 <div class="banner" style="background-image:url(<?php echo $url;?>);<?php echo $background; ?>">
 <?php
@@ -59,23 +59,16 @@ else
 <!--- Search Section End here ---->
 
 <div class="container">
-<?php // $oppclass[]=array(104 => "clutch-repair-page", 107 => "clutch-repair-page", 108 => "clutch-repair-page", 109 => "clutch-repair-page");
-//if (array_key_exists($post_id, $oppclass[0])){
-//if($oppclass[0][$post_id]){$mainclass=' '.$oppclass[0][$post_id];}
-//}
-//else{
-//    $mainclass='';} 
-?>
 <div class="opportunities clutch-repair-page thr-btn-main">
-    
 <!-- Breadcrumbs start here-->
 <div class="breadcrumb-container">
 <ol class="breadcrumb">
 <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
-<li><a href="<?php echo get_permalink(122); ?>">Services</a></li>
+<li>Services</li>
 <?php $cat=get_the_terms($post_id, 'categories_services'); 
 $cat11=$cat[0]; ?>
-<li><a href="<?php echo get_permalink(122); ?>"><?php echo $cat11->name; ?></a></li>
+<!--<li><a href="<?php //echo get_permalink(122); ?>"><?php //echo $cat11->name; ?></a></li>-->
+<li><?php echo $cat11->name; ?></li>
 <li class="active"><?php echo get_the_title($post_id); ?></li>
 </ol>
 </div>    
@@ -168,29 +161,28 @@ if($show )
 $auth_img=get_post_meta($post->ID,"author_image",true);
 $auth_dec=get_post_meta($post->ID,"author_info",true);
 $tool_img=get_post_meta($post->ID,"tool_image",true);
-    
 ?>
 <div class="clutch-norrie-andreson">
-  <div class="container">
-    <div class="row">
-       <div class="col-md-3">
-          <?php  if($auth_img){ ?>
- <img alt="..." src="<?php echo wp_get_attachment_url($auth_img); ?>">
-          <?php } ?>
-       </div> <!--col-md-3-->
-       <div class="col-md-6">
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+<?php  if($auth_img){ ?>
+<img alt="..." src="<?php echo wp_get_attachment_url($auth_img); ?>">
+<?php } ?>
+</div> <!--col-md-3-->
+<div class="col-md-6">
 <?php if($auth_dec){
-    echo $auth_dec;
+echo $auth_dec;
 }
 ?>
-       </div> <!--col-md-6-->
-       <div class="col-md-3">
-           <?php if($tool_img){ ?>
-         <img alt="..." src="<?php echo wp_get_attachment_url($tool_img); ?>">
-           <?php } ?>
-       </div>
-    </div> <!--row close-->
-  </div> <!--container-fluid-->
+</div> <!--col-md-6-->
+<div class="col-md-3">
+<?php if($tool_img){ ?>
+<img alt="..." src="<?php echo wp_get_attachment_url($tool_img); ?>">
+<?php } ?>
+</div>
+</div> <!--row close-->
+</div> <!--container-fluid-->
 </div>
 <?php } ?>
 <div class="conditioning-service-package air-conditioning">
@@ -344,18 +336,9 @@ Repair Kits Supplied</h3>
 </div> <!--col-xs-6-->
 </div>
 </div>
-
 </div>
-
-
-</div> <!--online-seciton-->
-
-<!----Logo carousel Start---->
-
-<!-- Client logo's Section -->
-<?php get_sidebar('brands'); ?>
-<!-- Client logo's Section End -->
-
+</div> 
+<?php get_sidebar('brands'); ?> <!-- Client logo's Section -->
 
 <?php get_footer(); ?>
 

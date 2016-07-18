@@ -158,12 +158,7 @@ if($url1!="") { ?>
 </div>
 </div>
 
-<!-- Four Depts Section -->
-<?php get_sidebar('departments'); ?> 
+<?php get_sidebar('departments'); ?>  <!-- Four Depts Section -->
+<?php get_sidebar('brands'); ?> <!-- Client logo's Section -->
 
-<!-- Client logo's Section -->
-<?php get_sidebar('brands'); ?>
-
-<?php 
-get_footer();
-?>
+<?php get_footer(); ?>

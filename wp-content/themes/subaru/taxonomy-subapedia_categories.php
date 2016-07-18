@@ -15,9 +15,9 @@
  * @subpackage Twenty_Sixteen
  * @since Twenty Sixteen 1.0
  */
+get_header(); ?>
 
-get_header(); 
-
+<?php
 $term=get_queried_object();
 $url= get_field('banner_image', $term->taxonomy.'_'.$term->term_id);
 
@@ -54,22 +54,19 @@ else
 <input type="text" class="form-control" placeholder="Search website">
 </div>
 <button type="submit" class="main-search-btn">search</button>
-
 </form>
 </div>
 </div>
 </div>
 
 
-
 <div class="container">
 <div class="opportunities">
-
 <div class="breadcrumb-container">
 <ol class="breadcrumb">
-<li><a href="#">Home</a></li>
-<li><a href="#">Subapaedia</a></li>
-<li><a href="#">Subaru News & Articles </a></li>
+<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
+<li>Subapaedia</li>
+<li><a href="<?php echo get_term_link($term->term_id,'subapedia_categories'); ?>"><?php echo $term->name; ?></a></li>
 <li class="active">NEWS</li>
 </ol>
 </div>
@@ -77,11 +74,27 @@ else
 <h2><?php echo $term->name; ?></h2> 
 
 <div class="row mk00">
-<div class="col-xs-12 col-md-7">
-    
+<div class="col-xs-12 col-md-7">   
 <?php
+$paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
+$query = new WP_Query( 
+array(
+'order'         => 'asc',
+'post_type'     => 'subapedia',
+'paged'=> $paged,
+'tax_query' => array(
+array(
+'taxonomy' => 'subapedia_categories',
+'field'    => 'term_id',
+'terms'    => array( $term->term_id ),
+),
+),    
+)
+);
+if($query->have_posts())
+{
 // Start the Loop.
-while ( have_posts() ) : the_post();
+while ( $query->have_posts() ) : $query->the_post();
 
 /*
  Include the Post-Format-specific template for the content.
@@ -93,16 +106,15 @@ get_template_part( 'template-parts/content', 'subapedia' );
 // End the loop.
 endwhile;
 
-//// Previous/next page navigation.
-//the_posts_pagination( array(
-//'prev_text'          => __( 'Previous page', 'twentysixteen' ),
-//'next_text'          => __( 'Next page', 'twentysixteen' ),
-//'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentysixteen' ) . ' </span>',
-//) );
-//
-//// If no content, include the "No posts found" template.
-//else :
-//get_template_part( 'template-parts/content', 'none' );
+/* Pagination */
+if (function_exists("pagination")) {
+pagination($query->max_num_pages);
+} 
+/* End Pagination */
+}
+else{ // If no content, include the "No posts found" template.
+get_template_part( 'template-parts/content', 'none' );    
+}
 ?>
 <div class="row mk11">
 <div class="col-xs-12 col-sm-4">
@@ -147,10 +159,8 @@ endwhile;
 
 <?php get_sidebar('brands'); ?> <!-- Client logo's Section -->
 
-
-
 <?php get_footer(); ?>
-<script>
+<!--<script>
 jQuery(document).ready(function () {
 jQuery('#page_val').val();
 });
@@ -162,7 +172,7 @@ var page_val = jQuery('#page_val').val();
 var page_val1 = parseInt(page_val) + 1;
 jQuery.ajax({
 type: "GET",
-url: "<?php echo get_stylesheet_directory_uri(); ?>/ajax/latest-posts.php",
+url: "<?php //echo get_stylesheet_directory_uri(); ?>/ajax/latest-posts.php",
 data: {
 page_val1: page_val1,
 format: 'raw'
@@ -182,4 +192,4 @@ jQuery(".load_more").hide();
 });
 
 }
-    </script>
+</script>-->

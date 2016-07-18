@@ -61,6 +61,8 @@ register_taxonomy( 'departments_categories', array( 'departments' ), $args );
 }
 add_action( 'init', 'create_departments_taxonomies', 0 );
 add_image_size( 'departments_image', 287,188, true );  
+add_image_size( 'latest_posts', 461,255, true ); 
+add_image_size( 'team_slider', 599,541, true ); 
 /* End DEPARTMENTS Section Home Page */
 
 /* WHY CHOOSE ALL DRIVE SUBAROO */
@@ -121,67 +123,9 @@ register_taxonomy( 'whychoosesubaroo_categories', array( 'whychoosesubaroo' ), $
 }
 add_action( 'init', 'create_whychoosesubaroo_taxonomies', 0 );
 add_image_size( 'whychoosesubaroo_image', 74,54, true );  
-
-/* News Section Home Page */
-add_action( 'init', 'create_news' );
-function create_news() {
-register_post_type( 'news',
-array(
-'labels' => array(
-'name' => 'NEWS',
-'singular_name' => 'news',
-'add_new' => 'Add New',
-'add_new_item' => 'Add New NEWS',
-'edit' => 'Edit',
-'edit_item' => 'Edit New NEWS ',
-'new_item' => 'New  NEWS',
-'view' => 'View',
-'view_item' => 'View  NEWS',
-'search_items' => 'Search  NEWS',
-'not_found' => 'No  NEWS Found',
-'not_found_in_trash' => 'No NEWS found in Trash',
-'parent' => 'Parent Main NEWS'
-),
-
-'public' => true,
-'menu_position' => 15,
-'supports' => array( 'title', 'editor', 'comments', 'thumbnail', 'custom-fields' ),
-'taxonomies' => array( '' ),
-
-'has_archive' => true
-)
-);
-} 
-function create_news_taxonomies() {
-$labels = array(
-'name'              => _x( 'Categories', 'taxonomy general name' ),
-'singular_name'     => _x( 'Category', 'taxonomy singular name' ),
-'search_items'      => __( 'Search Categories' ),
-'all_items'         => __( 'All Categories' ),
-'parent_item'       => __( 'Parent Category' ),
-'parent_item_colon' => __( 'Parent Category:' ),
-'edit_item'         => __( 'Edit Category' ),
-'update_item'       => __( 'Update Category' ),
-'add_new_item'      => __( 'Add New Category' ),
-'new_item_name'     => __( 'New Category Name' ),
-'menu_name'         => __( 'Categories' ),
-); 
-
-$args = array(
-'hierarchical'      => true, // Set this to 'false' for non-hierarchical taxonomy (like tags)
-'labels'            => $labels,
-'show_ui'           => true,
-'show_admin_column' => true,
-'query_var'         => true, 
-'rewrite'           => array( 'slug' => 'categories_news' ),
-);
-
-register_taxonomy( 'news_categories', array( 'news' ), $args );
-}
-add_action( 'init', 'create_news_taxonomies', 0 );
+add_image_size( 'subapedia_images', 828,341, true ); 
 add_image_size( 'news_image', 276,245, true ); 
 add_image_size( 'news_inner_image', 828,341, true );  
-/*news banner image resize */
 add_image_size( 'news_banner_image', 1920,725, true );   
 add_image_size( 'latestnews_image', 461,255, true );  
 add_image_size( 'service_head_gasket', 705,242, true );  
@@ -1050,3 +994,60 @@ $args = array(
 register_taxonomy( 'subapedia_categories', array( 'subapedia' ), $args );
 }
 add_action( 'init', 'create_subapedia_taxonomies', 0 );
+
+
+function pagination($pages = '', $range = 4)
+{  
+$showitems = ($range * 2)+1;  
+
+global $paged;
+if(empty($paged)) $paged = 1;
+
+if($pages == '')
+{
+global $wp_query;
+$pages = $wp_query->max_num_pages;
+if(!$pages)
+{
+$pages = 1;
+}
+}   
+
+if(1 != $pages)
+{
+echo "<div class=\"pagination\"><span>Page ".$paged." of ".$pages."</span>";
+if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<a href='".get_pagenum_link(1)."'>&laquo; First</a>";
+if($paged > 1 && $showitems < $pages) echo "<a href='".get_pagenum_link($paged - 1)."'>&lsaquo; Previous</a>";
+
+for ($i=1; $i <= $pages; $i++)
+{
+if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems ))
+{
+echo ($paged == $i)? "<span class=\"current\">".$i."</span>":"<a href='".get_pagenum_link($i)."' class=\"inactive\">".$i."</a>";
+}
+}
+
+if ($paged < $pages && $showitems < $pages) echo "<a href=\"".get_pagenum_link($paged + 1)."\">Next &rsaquo;</a>";  
+if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo "<a href='".get_pagenum_link($pages)."'>Last &raquo;</a>";
+echo "</div>\n";
+}
+}
+
+function sbt_custom_excerpt_more( $output ) {
+return preg_replace('/<a[^>]+>Continue reading.*?<\/a>/i','',$output);
+}
+add_filter( 'get_the_excerpt', 'sbt_custom_excerpt_more', 20 );
+
+function wpdocs_custom_excerpt_length( $length ) {
+    return 25;
+}
+add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+
+function wpb_move_comment_field_to_bottom( $fields ) {
+$comment_field = $fields['comment'];
+unset( $fields['comment'] );
+$fields['comment'] = $comment_field;
+return $fields;
+}
+
+add_filter( 'comment_form_fields', 'wpb_move_comment_field_to_bottom' );

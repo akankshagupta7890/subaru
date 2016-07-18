@@ -9,39 +9,43 @@
 
 get_header(); ?>
 
-
 <?php
-// Start the loop.
+
 while ( have_posts() ) : the_post();
-
-// Include the single post content template.
-	
+global $postid;
+$postid = get_the_ID();
 get_template_part( 'template-parts/content', 'single_subapedia' );
-
-// If comments are open or we have at least one comment, load up the comment template.
-if ( comments_open() || get_comments_number() ) {
-comments_template();
-}
-
-if ( is_singular( 'attachment' ) ) {
-// Parent post navigation.
-the_post_navigation( array(
-'prev_text' => _x( '<span class="meta-nav">Published in</span><span class="post-title">%title</span>', 'Parent post link', 'twentysixteen' ),
-) );
-} elseif ( is_singular( 'post' ) ) {
-// Previous/next post navigation.
-the_post_navigation( array(
-'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'twentysixteen' ) . '</span> ' .
-'<span class="screen-reader-text">' . __( 'Next post:', 'twentysixteen' ) . '</span> ' .
-'<span class="post-title">%title</span>',
-'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'twentysixteen' ) . '</span> ' .
-'<span class="screen-reader-text">' . __( 'Previous post:', 'twentysixteen' ) . '</span> ' .
-'<span class="post-title">%title</span>',
-) );
-}
-
 // End of the loop.
 endwhile;
 ?>
+<?php get_sidebar('latest_posts'); ?> <!-- Latest Posts -->
+<?php get_sidebar('subapedia_slider'); ?> <!-- Subapedia Slider -->
+<?php get_sidebar('departments'); ?> <!-- Four Listing Departments -->
+<?php get_sidebar('testimonials_slider'); ?> <!-- Testimonials Slider -->
 
+<div class="container">
+<div class="reply-form">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+<?php    
+        //Gather comments for a specific page/post 
+        $comments = get_comments(array(
+            'post_id' => $postid,
+            'status' => 'approve' //Change this to the type of comments to be displayed
+        ));
+
+        //Display the list of comments
+        wp_list_comments(array(
+            'per_page' => 10, //Allow comment pagination
+            'reverse_top_level' => false //Show the latest comments at the top of the list
+        ), $comments);
+        
+comment_form( $comments, $postid );
+    ?>
+</div> 
+</div>
+</div> <!--reply-form-->
+</div>
+
+<?php get_sidebar('brands'); ?> <!-- Client logo's Section -->
 <?php get_footer(); ?>

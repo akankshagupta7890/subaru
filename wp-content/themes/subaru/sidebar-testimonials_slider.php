@@ -38,11 +38,13 @@ $i=1;
 </div>
 </div>
 </div>
-<?php endwhile;?>
+<?php endwhile;
+wp_reset_postdata();
+?>
 </div>
 
 <div class="text-center">
-<a href="#" class="testi-btn">View More TESTIMONIALS</a>
+<a href="<?php echo get_permalink(85); ?>" class="testi-btn">View More TESTIMONIALS</a>
 </div>
 </div>
 

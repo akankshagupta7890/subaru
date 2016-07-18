@@ -114,14 +114,26 @@ else
 <h2>News & Subapedia articles</h2>
 </div>
 <div class="news-art-right-hd">
-<a href="#">More News & Articles <i class="fa fa-angle-right" aria-hidden="true"></i> <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+<a href="<?php echo get_term_link(40,'subapedia_categories'); ?>">More News & Articles <i class="fa fa-angle-right" aria-hidden="true"></i> <i class="fa fa-angle-right" aria-hidden="true"></i></a>
 </div>
 </div>
 
 <div class="row">
 <?php 
 global $post;
-query_posts('post_type=news&showposts=6&order=desc');
+$args=array(
+'order'         => 'desc',
+'post_type'     => 'subapedia',
+'showposts' =>6,    
+'tax_query' => array(
+array(
+'taxonomy' => 'subapedia_categories',
+'field'    => 'term_id',
+'terms'    => array( 40 ),
+),
+),    
+);
+query_posts($args);
 $i=1;
 while (have_posts()) : the_post(); 
 $post_id=$post->ID;
@@ -150,7 +162,7 @@ else
 </div>
 <div class="news-art-list-right">
 <h5><?php the_title();?></h5>
-<?php the_field('news_content'); ?>
+<?php the_excerpt(); ?>
 <a href="<?php the_permalink(); ?>" class="news-art-btn">Read More <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>  
 </div>
 </div>
@@ -159,10 +171,9 @@ else
 </div>
 </div>
 </div>
-
 </div>
+
 <?php get_sidebar('testimonials_slider'); ?>
-<!-- Client logo's Section -->
-<?php get_sidebar('brands'); ?>
-<!-- Client logo's Section End -->
+<?php get_sidebar('brands'); ?> <!-- Client logo's Section -->
+
 <?php get_footer();?>

@@ -2,8 +2,8 @@
 /**
 * Template Name: Services
 */
-
 get_header(); ?> 
+
 <?php  
 global $post;
 while (have_posts()) : the_post(); 
@@ -46,7 +46,6 @@ else
 <input type="text" class="form-control" placeholder="Search website">
 </div>
 <button type="submit" class="main-search-btn">search</button>
-
 </form>
 </div>
 </div>
@@ -58,12 +57,12 @@ else
 
 <div class="breadcrumb-container">
 <ol class="breadcrumb">
-<li><a href="#">Home</a></li>
+<li><a href="<?php echo get_home_url(); ?>">Home</a></li>
 <li class="active">Services</li>
 </ol>
 </div>
 
-      <div class="about-section">
+<div class="about-section">
 <div class="all-subro-operates">
 <div class="container">
 <?php the_content();?>

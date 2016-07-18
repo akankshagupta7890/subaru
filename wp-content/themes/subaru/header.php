@@ -50,6 +50,5 @@ var cdate='<?php echo date('m/d/Y'); ?>';
 </div>
 </div>
 </nav>
-
 </header>
 
