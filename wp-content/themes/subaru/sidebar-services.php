@@ -76,58 +76,80 @@ wp_reset_postdata();
 </div>
 
 <div class="subaru-engines-australia">
-<h4>Subaru Engines Australia</h4> <a class="btn btn-mr" href="">More</a>
-
+<?php $more_url= get_post_meta(get_the_ID(),"subar_more_link",true);
+?>  
+<?php 
+// check if the repeater field has rows of data
+if( have_rows('engine_adds') ):
+?>
+<h4>Subaru Engines Australia</h4> <a class="btn btn-mr" href="<?php if($more_url){ echo $more_url;} else{echo 'javascript:void(0);';}?>">More</a>    
 <div class="row mb00">
+<?php    
+while ( have_rows('engine_adds') ) : the_row();
+?>
 <div class="col-lg-6">
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/service/adg.png">
-</div> <!--col-lg-6-->
-<div class="col-lg-6">
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/service/bagf.png">
-</div> <!--col-lg-6-->
-<div class="col-lg-6">
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/service/adg.png">
-</div> <!--col-lg-6-->
-<div class="col-lg-6">
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/service/bagf.png">
-</div> <!--col-lg-6-->
+<?php $add_id=get_sub_field('image'); 
+$add_image = wp_get_attachment_image_src($add_id,'adds_img');
+$add_url = $add_image[0];
+?>
+<img src="<?php echo $add_url; ?>">
+</div>
+<?php endwhile; ?>
 </div> 
+<?php endif; ?>
+
 </div> <!--engine-australia-->
 
 <div class="subaru-engines-australia engine-gear-box">
-<h4>Subaru Gearboxes Australia</h4> <a class="btn btn-mr" href="">More</a>
+<?php $more_url= get_post_meta(get_the_ID(),"subar_gear_more_link",true);
+?>  
+
+<?php 
+// check if the repeater field has rows of data
+if( have_rows('gearbox_adds') ): ?>
+<h4>Subaru Gearbox Australia</h4> <a class="btn btn-mr" href="<?php if($more_url){ echo $more_url;} else{echo 'javascript:void(0);';}?>">More</a>   
 <div class="row mb00">
+<?php while ( have_rows('gearbox_adds') ) : the_row();
+?>
 <div class="col-lg-6">
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/service/adg.png">
-</div> <!--col-lg-6-->
-<div class="col-lg-6">
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/service/bagf.png">
-</div> <!--col-lg-6-->
-<div class="col-lg-6">
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/service/adg.png">
-</div> <!--col-lg-6-->
-<div class="col-lg-6">
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/service/bagf.png">
-</div> <!--col-lg-6-->
+<?php $add_id=get_sub_field('image'); 
+$add_image = wp_get_attachment_image_src($add_id,'full');
+$add_url = $add_image[0];
+?>
+<img src="<?php echo $add_url; ?>">
+</div>
+<?php endwhile; ?>
 </div> 
+<?php endif; ?>
+ 
 </div> <!----->
 
 <div class="subaru-engines-australia engine-superpedia">
-<h4>Subapedia</h4> <a class="btn btn-mr" href="">More</a>
+<?php $more_url= get_post_meta(get_the_ID(),"subapedia_more_link",true);
+?>  
+
+<?php 
+// check if the repeater field has rows of data
+if( have_rows('subapedia_adds') ):
+?>
+<h4>Subapedia</h4> <a class="btn btn-mr" href="<?php if($more_url){ echo $more_url;} else{echo 'javascript:void(0);';}?>">More</a>    
 <div class="row mb00">
+<?php    
+while ( have_rows('subapedia_adds') ) : the_row();
+?>
 <div class="col-lg-6">
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/service/adg.png">
-</div> <!--col-lg-6-->
-<div class="col-lg-6">
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/service/bagf.png">
-</div> <!--col-lg-6-->
-<div class="col-lg-6">
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/service/adg.png">
-</div> <!--col-lg-6-->
-<div class="col-lg-6">
-<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/service/bagf.png">
-</div> <!--col-lg-6-->
+<?php $add_id=get_sub_field('image'); 
+$add_image = wp_get_attachment_image_src($add_id,'full');
+$add_url = $add_image[0];
+?>
+<img src="<?php echo $add_url; ?>">
+</div>
+<?php endwhile;
+?>
 </div> 
+<?php 
+endif; ?>
+
 </div> <!----->
 
 </div> <!--service-menu-Close--> 

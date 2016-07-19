@@ -131,19 +131,39 @@ $id=get_the_ID();
 <a class="right carousel-control" href="#myCarouseltestimonial<?php echo $i; ?>" role="button" data-slide="next">
 <i class="fa fa-chevron-right" aria-hidden="true"></i>
 </a>
-<div class="item active" style="background-image:url('http://www.alldrivesubaru.com.au/wp-content/themes/subaru/images/testimonial/Testimonials_img.jpg');">
-</div>
-<div class="item" style="background-image:url('http://www.alldrivesubaru.com.au/wp-content/themes/subaru/images/testimonial/Testimonials_img.jpg');">
-</div>
-<div class="item" style="background-image:url('http://www.alldrivesubaru.com.au/wp-content/themes/subaru/images/testimonial/Testimonials_img.jpg');">
-</div>
+
+<?php
+if( have_rows('slides') ):
+$j=1;
+while ( have_rows('slides') ) : the_row();
+$slide_id=get_sub_field('slide'); 
+$slide_image = wp_get_attachment_image_src($slide_id,'full');
+$slide_url = $slide_image[0];
+if($j==1){ $clas=' active'; } else{ $clas=''; }
+?>
+<div class="item <?php echo $clas; ?>" style="background-image:url('<?php echo $slide_url; ?>');"></div>
+<?php 
+$j++;
+endwhile;
+endif; ?>
 </div>
 
 <div class="content">
 <ol class="carousel-indicators ">
-<li data-target="#myCarouseltestimonial<?php echo $i; ?>" data-slide-to="0" class="active" style="background-image:url('http://www.alldrivesubaru.com.au/wp-content/themes/subaru/images/testimonial/Testimonials_img.jpg');"></li>
-<li data-target="#myCarouseltestimonial<?php echo $i; ?>" data-slide-to="1" style="background-image:url('http://www.alldrivesubaru.com.au/wp-content/themes/subaru/images/testimonial/Testimonials_img0.jpg');"></li>
-<li data-target="#myCarouseltestimonial<?php echo $i; ?>" data-slide-to="2" style="background-image:url('http://www.alldrivesubaru.com.au/wp-content/themes/subaru/images/testimonial/Testimonials_img1.jpg');"></li>
+<?php
+if( have_rows('slides') ):
+$j=1;
+while ( have_rows('slides') ) : the_row();
+$slide_id=get_sub_field('slide'); 
+$slide_image = wp_get_attachment_image_src($slide_id,'full');
+$slide_url = $slide_image[0];
+if($j==1){ $clas=' active'; } else{ $clas=''; }
+?>
+<li data-target="#myCarouseltestimonial<?php echo $i; ?>" data-slide-to="<?php echo $i; ?>" class="<?php echo $clas; ?>" style="background-image:url('<?php echo $slide_url; ?>');"></li>
+<?php 
+$j++;
+endwhile;
+endif; ?>
 </ol>
 </div>
 </div>

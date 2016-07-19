@@ -67,7 +67,6 @@ else
 <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
 <li>Subapaedia</li>
 <li><a href="<?php echo get_term_link($term->term_id,'subapedia_categories'); ?>"><?php echo $term->name; ?></a></li>
-<li class="active">NEWS</li>
 </ol>
 </div>
 
@@ -105,7 +104,7 @@ get_template_part( 'template-parts/content', 'subapedia' );
 
 // End the loop.
 endwhile;
-
+wp_reset_postdata();
 /* Pagination */
 if (function_exists("pagination")) {
 pagination($query->max_num_pages);
@@ -140,7 +139,7 @@ get_template_part( 'template-parts/content', 'none' );
 <?php get_sidebar('departments'); ?> <!-- Four Listing Departments -->
 <?php get_sidebar('testimonials_slider'); ?> <!-- Testimonials Slider -->
 
-<div class="container">
+<!--<div class="container">
 <div class="reply-form">
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
@@ -154,8 +153,8 @@ get_template_part( 'template-parts/content', 'none' );
 <button type="button" class="btn btn-danger btn-submit">send</button>
 </div> 
 </div>
-</div> <!--reply-form-->
-</div>
+</div> reply-form
+</div>-->
 
 <?php get_sidebar('brands'); ?> <!-- Client logo's Section -->
 

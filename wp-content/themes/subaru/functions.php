@@ -63,6 +63,7 @@ add_action( 'init', 'create_departments_taxonomies', 0 );
 add_image_size( 'departments_image', 287,188, true );  
 add_image_size( 'latest_posts', 461,255, true ); 
 add_image_size( 'team_slider', 599,541, true ); 
+add_image_size( 'adds_img', 192,113, true ); 
 /* End DEPARTMENTS Section Home Page */
 
 /* WHY CHOOSE ALL DRIVE SUBAROO */
@@ -969,8 +970,8 @@ array(
 } 
 function create_subapedia_taxonomies() {
 $labels = array(
-'name'              => _x( 'Categories', 'taxonomy general name' ),
-'singular_name'     => _x( 'Category', 'taxonomy singular name' ),
+'name'              => _x( 'Subapedia Categories', 'taxonomy general name' ),
+'singular_name'     => _x( 'Subapedia Category', 'taxonomy singular name' ),
 'search_items'      => __( 'Search Categories' ),
 'all_items'         => __( 'All Categories' ),
 'parent_item'       => __( 'Parent Category' ),
@@ -979,7 +980,7 @@ $labels = array(
 'update_item'       => __( 'Update Category' ),
 'add_new_item'      => __( 'Add New Category' ),
 'new_item_name'     => __( 'New Category Name' ),
-'menu_name'         => __( 'Categories' ),
+'menu_name'         => __( 'Subapedia Categories' ),
 ); 
 
 $args = array(
@@ -1051,3 +1052,26 @@ return $fields;
 }
 
 add_filter( 'comment_form_fields', 'wpb_move_comment_field_to_bottom' );
+
+class ik_walker extends Walker_Nav_Menu{        
+    //start of the sub menu wrap
+    function start_lvl(&$output, $depth) {
+        $output .= '<div class="custm-mega-cvr">
+                        <div class="mega-heading">
+                        <h4>Services Overview</h4>
+                        </div>
+                        <div class="mega-inner">
+                                <ul>';
+    }
+
+    //end of the sub menu wrap
+    function end_lvl(&$output, $depth) {
+        $output .= '
+                    </ul>
+                </div>
+
+        </div>';
+    }
+
+
+}

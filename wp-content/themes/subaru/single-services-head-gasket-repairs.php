@@ -189,7 +189,7 @@ $rightimg = get_post_meta($post->ID,"main_image_right",true);
 $img = wp_get_attachment_image_src($rightimg,'full');
 $url1 = $img[0];
 ?>
-<img alt="..." src="<?php echo $url1; ?>">
+<img alt="subaro" src="<?php echo $url1; ?>">
 <p><?php echo get_post_meta($post->ID,"image_caption",true); ?></p>
 </div> <!--internal-service-section-image-->
 <?php echo get_post_meta($post->ID,"main_description_right",true); ?>
@@ -285,15 +285,25 @@ $url1 = $img[0];
 
 <div class="comaon-faq-section">
 <div class="container">
-    
-<div class="q-wrap">
-<div class="question-faq">
-<h3>Is the external head gasket leak issue also common in Subaru turbo models?</h3>
-</div> <!--question-faq-->
-<div class="answer-faq">
-<p>No, in fact turbo models are fitted with Multi &ndash;layer gaskets which have proven to be robust.</p>
-</div> <!---answer-faq--->
-</div>
+
+<?php 
+
+
+// check if the repeater field has rows of data
+if( have_rows('faq') ):
+//
+// 	// loop through the rows of data
+    while ( have_rows('faq') ) : the_row();
+//    ?>
+    <div class="q-wrap">
+    <?php
+       // display a sub field value     ?>
+       <div class="question-faq"><h3><?php the_sub_field('faq_title'); ?></h3></div>
+      <div class="answer-faq"><?php the_sub_field('faq_answer'); ?></div>
+     
+     </div>
+  <?php endwhile;
+  endif; ?>
 <?php echo get_post_meta($post->ID,"contact_details",true); ?> 
 <div class="two-coloumns">
 <div class="row">
