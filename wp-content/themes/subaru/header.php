@@ -100,13 +100,11 @@ if ( $parent_id == 140 || $parent_id == 136):
 <div class="mega-inner-left">    
 
 <?php
-
-$queried_term = get_query_var($taxonomy);
 $argv = array(      
-'orderby' => 'term_order',       
-'slug' => $queried_term        
+'orderby' => 'term_order',             
  );   
 $terms = get_terms($taxonomy, $argv);
+//print_r($terms);
 if ($terms) {
 $i=1;
 

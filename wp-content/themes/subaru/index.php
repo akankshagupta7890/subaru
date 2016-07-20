@@ -16,42 +16,43 @@
 
 get_header(); ?>
 
-<?php 
-$post_id= get_the_ID();
-$banner = get_post_meta($post->ID,"banner_image",true);
-$image = wp_get_attachment_image_src($banner,'banner_image');
-$url = $image[0];
-if($url!="") 
-{
-?>
-<div class="banner" style="background-image:url(<?php echo $url;?>);background-position:72% 50%;">
-<?php
-}
-else
-{
-?>
 <div class="banner" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=74&txt=1500%C3%97296&w=1920&h=895)">
-<?php 
-}
-?>
 </div>
-</div>
-<!--- Banner Section End here ---->
 <div class="clearfix"></div>
-<div class="container">
-<div class="row conditioning-repairs">
-<div class="col-xs-12 col-md-12 ">   
 
+<div class="main-search-sec">
+<div class="container">
+<div class="main-search ">
+<form>
+<div class="form-group select-in">
+<select class="form-control">
+<option>Search by category</option>
+<option>Engine</option>
+<option>Gearbox</option>
+<option>Parts</option>
+</select>
+</div>
+<div class="form-group search-in">
+<input type="text" class="form-control" placeholder="Search website">
+</div>
+<button type="submit" class="main-search-btn">search</button>
+</form>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="opportunities">
 <?php if ( have_posts() ) : ?>
 
-<?php if ( is_home() && ! is_front_page() ) : ?>
-<header>
-<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-</header>
-<?php endif; ?>
+<!--<header class="page-header">-->
+<?php
+the_archive_title( '<h2>', '</h2>' );
+//the_archive_description( '<div class="taxonomy-description">', '</div>' );
+?>
+<!--</header> .page-header -->
 
 <?php
-// Start the loop.
+// Start the Loop.
 while ( have_posts() ) : the_post();
 
 /*
@@ -77,8 +78,6 @@ get_template_part( 'template-parts/content', 'none' );
 
 endif;
 ?>
-
 </div>
-</div>
-</div>
+</div>    
 <?php get_footer(); ?>

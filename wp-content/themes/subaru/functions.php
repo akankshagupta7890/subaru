@@ -1053,25 +1053,4 @@ return $fields;
 
 add_filter( 'comment_form_fields', 'wpb_move_comment_field_to_bottom' );
 
-class ik_walker extends Walker_Nav_Menu{        
-    //start of the sub menu wrap
-    function start_lvl(&$output, $depth) {
-        $output .= '<div class="custm-mega-cvr">
-                        <div class="mega-heading">
-                        <h4>Services Overview</h4>
-                        </div>
-                        <div class="mega-inner">
-                                <ul>';
-    }
 
-    //end of the sub menu wrap
-    function end_lvl(&$output, $depth) {
-        $output .= '
-                    </ul>
-                </div>
-
-        </div>';
-    }
-
-
-}

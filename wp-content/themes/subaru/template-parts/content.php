@@ -8,78 +8,22 @@
  */
 ?>
 <!--- Banner Section start here ---->
-<?php 
-$post_id= get_the_ID();
-$banner = get_post_meta($post->ID,"banner_image",true);
-$image = wp_get_attachment_image_src($banner,'banner_image');
-$url = $image[0];
-if($url!="") 
-{
-?>
-<div class="banner" style="background-image:url(<?php echo $url;?>);background-position:72% 50%;">
-<?php
-}
-else
-{
-?>
-<div class="banner" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=74&txt=1500%C3%97296&w=1920&h=895)">
-<?php 
-}
-?>
-</div>
-</div>
-<!--- Banner Section End here ---->
-<div class="clearfix"></div>
-<div class="container">
-<div class="row conditioning-repairs">
-<div class="col-xs-12 col-md-12 "> 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
-			<span class="sticky-post"><?php _e( 'Featured', 'twentysixteen' ); ?></span>
-		<?php endif; ?>
+<div class="news-section">
+<div class="author-post-headding news">
+<h3><?php the_title(); ?></h3>
+<ul class="post-cmts">
+<li class="time"><?php echo get_the_date(); ?></li>
+<li class="author-name"><?php $fname = get_the_author_meta('first_name');
+$lname = get_the_author_meta('last_name');
+echo $fname.' '.$lname;
+?></li>
+<li class="folder-name"><?php echo get_field('designation', 'user_'.get_the_author_meta('ID')); ?></li>
+<li class="commetns"><?php echo get_comments_number(); ?> Comments</li>
+</ul>
+</div> 
+<?php echo get_the_post_thumbnail(get_the_ID(),'subapedia_images'); ?>
 
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
-	</header><!-- .entry-header -->
+<p><?php echo get_excerpt(400).'...'; ?></p>
 
-	<?php twentysixteen_excerpt(); ?>
-
-	<?php twentysixteen_post_thumbnail(); ?>
-
-	<div class="entry-content">
-		<?php
-			/* translators: %s: Name of current post */
-			the_content( sprintf(
-				__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'twentysixteen' ),
-				get_the_title()
-			) );
-
-			wp_link_pages( array(
-				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentysixteen' ) . '</span>',
-				'after'       => '</div>',
-				'link_before' => '<span>',
-				'link_after'  => '</span>',
-				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'twentysixteen' ) . ' </span>%',
-				'separator'   => '<span class="screen-reader-text">, </span>',
-			) );
-		?>
-	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php twentysixteen_entry_meta(); ?>
-		<?php
-			edit_post_link(
-				sprintf(
-					/* translators: %s: Name of current post */
-					__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'twentysixteen' ),
-					get_the_title()
-				),
-				'<span class="edit-link">',
-				'</span>'
-			);
-		?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-## -->
-</div>
-</div>
+<a href="<?php echo get_permalink(); ?>"><button type="button" class="btn btn-default btn-read">Read More</button></a>
 </div>

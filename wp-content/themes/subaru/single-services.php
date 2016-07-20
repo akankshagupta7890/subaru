@@ -146,7 +146,7 @@ else{$displaycls='clutch-repair';}
 
 <div class="thr-btns">
 <ul>
-<li><a href='#booking-cal'><button class="btn btn-default btn-quote quote" type="button">Get A Quote</button></a></li>
+<li><a href='#appointment'><button class="btn btn-default btn-quote quote" type="button">Get A Quote</button></a></li>
 <li><a class="btn btn-default btn-quote helpline" href="tel:+(02) 9915 9900">(02) 9915 9900</a></li>
 <li><a class="btn btn-default btn-quote helpline" href="tel:+0420319049">0420 319 049</a></li>
 </ul>
@@ -200,7 +200,7 @@ else{ ?><p>Subaru replacement air conditioner compressors or evaporator  kits ca
 <div class="col-md-12 price-grid"> 
 <?php $packages= get_post_meta( $post_id, '_test_value', true); 
 $pack_uns=explode(',',$packages);
-$args = array( 'post__in'=>$pack_uns, 'post_type' =>'packages','order'=> 'ASC' );
+$args = array( 'post__in'=>$pack_uns, 'post_type' =>'packages','order'=> 'ASC', 'posts_per_page'   => -1 );
 $lastposts = get_posts( $args );
 foreach ( $lastposts as $post ) {
 
@@ -220,8 +220,8 @@ else{ echo 'POA'; }
 <?php echo get_the_content($pack_id); ?>
 </div> <!---->
 <div class="bottom-buttons">
-<a href="#booking-cal"><button type="button" class="btn btn-default">Book Now</button></a>
-<a href="#booking-cal"><button type="button" class="btn btn-default right">Inquire Now</button></a>
+<a href="#appointment"><button type="button" class="btn btn-default">Book Now</button></a>
+<a href="#appointment"><button type="button" class="btn btn-default right">Inquire Now</button></a>
 </div>
 </div> <!--col-xs-12 col-md-4-->  
 <?php } ?>

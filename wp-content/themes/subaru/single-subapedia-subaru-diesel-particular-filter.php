@@ -90,6 +90,12 @@ echo $fname.' '.$lname;
     
 <div class="row mk00">
 <div class="col-xs-12 col-md-7 news-section">
+ <div class="author-post-headding">
+<?php $post_title=get_post_meta($post->ID,"author_post_heading",true);  
+if($post_title){echo $post_title;}
+?>
+</div>    
+<?php echo get_the_post_thumbnail(get_the_ID(),'subapedia_images'); ?>  
 <?php echo get_the_content(); ?>
 </div> <!--col-xs-12 col-md-7--->
 

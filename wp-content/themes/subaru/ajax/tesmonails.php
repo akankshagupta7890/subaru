@@ -33,7 +33,7 @@ $loop = new WP_Query($args);
 
 <div class="item">
 <div class="engine-testi-text">
-<?php echo get_the_content() ?>
+<?php echo get_excerpt(220).'...'; ?>
 <div class="engine-testi-name">
 <h4>Michael Zagami </h4>
 <p>Client Role (If any)</p>

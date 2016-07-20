@@ -18,17 +18,40 @@
 
 get_header(); ?>
 
-<div id="primary" class="content-area">
-<main id="main" class="site-main" role="main">
+<div class="banner" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=74&txt=1500%C3%97296&w=1920&h=895)">
+</div>
+<div class="clearfix"></div>
 
+<div class="main-search-sec">
+<div class="container">
+<div class="main-search ">
+<form>
+<div class="form-group select-in">
+<select class="form-control">
+<option>Search by category</option>
+<option>Engine</option>
+<option>Gearbox</option>
+<option>Parts</option>
+</select>
+</div>
+<div class="form-group search-in">
+<input type="text" class="form-control" placeholder="Search website">
+</div>
+<button type="submit" class="main-search-btn">search</button>
+</form>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="opportunities">
 <?php if ( have_posts() ) : ?>
 
-<header class="page-header">
+<!--<header class="page-header">-->
 <?php
-the_archive_title( '<h1 class="page-title">', '</h1>' );
-the_archive_description( '<div class="taxonomy-description">', '</div>' );
+the_archive_title( '<h2>', '</h2>' );
+//the_archive_description( '<div class="taxonomy-description">', '</div>' );
 ?>
-</header><!-- .page-header -->
+<!--</header> .page-header -->
 
 <?php
 // Start the Loop.
@@ -57,9 +80,7 @@ get_template_part( 'template-parts/content', 'none' );
 
 endif;
 ?>
+</div>
+</div>    
 
-</main><!-- .site-main -->
-</div><!-- .content-area -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

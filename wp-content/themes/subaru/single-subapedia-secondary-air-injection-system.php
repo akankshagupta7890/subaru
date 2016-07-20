@@ -89,14 +89,13 @@ echo $fname.' '.$lname;
 </div>  
     
 <div class="row mk00">
-<div class="col-xs-12 col-md-7 news-section">
+<div class="col-xs-12 col-md-7 diesel">
  <div class="author-post-headding">
 <?php $post_title=get_post_meta($post->ID,"author_post_heading",true);  
 if($post_title){echo $post_title;}
 ?>
 </div>    
-<?php echo get_the_post_thumbnail(get_the_ID(),'subapedia_images'); ?>   
-    
+<?php echo get_the_post_thumbnail(get_the_ID(),'subapedia_images'); ?>  
 <?php echo get_the_content(); ?>
 </div> <!--col-xs-12 col-md-7--->
 
@@ -128,6 +127,27 @@ else{ ?>
 <div class="col-xs-12 col-md-8">
 <?php echo get_post_meta($post_id,"pdf_description",true); ?>
 </div>
+
+<div class="col-xs-12 air">
+<h2><?php echo get_post_meta($post->ID,"hide_title",true); ?></h2>
+<div class="row">
+<?php
+if( have_rows('sections') ):
+while ( have_rows('sections') ) : the_row();
+$sections=get_sub_field('section'); 
+?>
+<div class="col-xs-12 col-sm-4">
+<?php echo $sections; ?>    
+</div>   
+
+<?php 
+endwhile;
+endif; ?>   
+
+       
+</div>
+</div>    
+    
 <div class="col-xs-12">
 <div class="row">
 <div class="col-xs-12 col-sm-4">

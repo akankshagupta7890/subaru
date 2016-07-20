@@ -5970,6 +5970,13 @@ li.dropdown-menu > li > a:hover {
 
 .clutch-repair.transpCV .clutch-nonturboo.border-img img{
     margin-bottom: 30px;
+    float: left;
+    width: auto;
+    margin-right: 30px;
+}
+
+.clutch-repair.transpCV .clutch-nonturboo.border-img p{
+    display: block;
 }
 
 .clutch-nonturboo {

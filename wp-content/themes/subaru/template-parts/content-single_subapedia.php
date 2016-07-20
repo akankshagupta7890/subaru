@@ -26,6 +26,31 @@ else
 <div class="banner" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=74&txt=1500%C3%97296&w=1920&h=895)">
 <?php 
 }
+if(has_term( 41, 'subapedia_categories', $post_id ))
+{ ?>
+<div class="banner-caption">
+<div style="position:static;" class="container">
+<div class="row">
+<div class="col-md-6">
+<?php echo get_post_meta($post->ID,"banner_caption_text",true); ?>
+</div> <!--col-sm-->
+<div class="col-sm-5">
+<?php 
+$banner_cap= get_post_meta($post->ID,"banner_caption_image",true);
+$bann_image = wp_get_attachment_image_src($banner_cap,'full');
+$cap_url = $bann_image[0];
+if($cap_url)
+{
+?>
+<img alt="subaroo" src="<?php echo $cap_url; ?>">
+<?php } 
+?>
+</div>
+</div> 
+</div>
+</div>
+<?php }
+
 ?>
 </div>
 
@@ -87,6 +112,12 @@ echo $fname.' '.$lname;
     
 <div class="row mk00">
 <div class="col-xs-12 col-md-7 news-section">
+ <div class="author-post-headding">
+<?php $post_title=get_post_meta($post->ID,"author_post_heading",true);  
+if($post_title){echo $post_title;}
+?>
+</div>    
+<?php echo get_the_post_thumbnail(get_the_ID(),'subapedia_images'); ?>    
 <?php the_content(); ?>
 
 <div class="row mk11">

@@ -25,13 +25,13 @@ else{$id='';}
 <?php
 echo $thecatid = get_query_var('cat'); echo $thecatid;
 global $post;
-query_posts('post_type=testimonial&showposts=15&cat='.$thecatid.'order=desc');
+query_posts('post_type=testimonial&showposts=15&cat='.$thecatid.'order=asc');
 $i=1;
 ?> 
 <?php while (have_posts()) : the_post(); ?>
 <div class="item">
 <div class="engine-testi-text">
-<?php echo get_the_content() ?>
+<?php echo get_excerpt(220).'...'; ?>
 <div class="engine-testi-name">
 <h4><?php the_title();?> </h4>
 <p><?php the_field('client_role');?></p>

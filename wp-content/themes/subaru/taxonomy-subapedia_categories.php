@@ -33,6 +33,29 @@ else
 <div class="banner" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=74&txt=1500%C3%97296&w=1920&h=895)">
 <?php 
 }
+if($term->term_id==41)
+{ ?>
+<div class="banner-caption">
+<div style="position:static;" class="container">
+<div class="row">
+<div class="col-md-6">
+<?php echo get_field('banner_caption_text', $term->taxonomy.'_'.$term->term_id);
+?>
+</div> <!--col-sm-->
+<div class="col-sm-5">
+<?php 
+$banner_cap= get_field('banner_caption_image', $term->taxonomy.'_'.$term->term_id);
+if($banner_cap)
+{
+?>
+<img alt="subaroo" src="<?php echo $banner_cap; ?>">
+<?php } 
+?>
+</div>
+</div> 
+</div>
+</div>
+<?php }
 ?>
 </div>
 
