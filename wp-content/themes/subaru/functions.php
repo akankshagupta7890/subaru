@@ -684,7 +684,7 @@ $body = '
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <link href="http://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" type="text/css">
-<title>Email Template - Classic</title>
+<title>Appointent Email</title>
 </head>
 
 <body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; font:12px arial; color:#000;">
@@ -852,7 +852,7 @@ $body = '
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <link href="http://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" type="text/css">
-<title>Email Template - Classic</title>
+<title>Enquiry Email</title>
 </head>
 
 <body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; font:12px arial; color:#000;">
@@ -1052,5 +1052,133 @@ return $fields;
 }
 
 add_filter( 'comment_form_fields', 'wpb_move_comment_field_to_bottom' );
+
+function quotemail(){  
+ //get the data from ajax() call  
+
+$qname=$_POST['qname'];
+$qphone=$_POST['qphone'];
+$qemail=$_POST['qemail'];
+$qdate=$_POST['qdate'];
+$qtime=$_POST['qtime'];
+$qmodel=$_POST['qmodel'];
+$qyear=$_POST['qyear'];
+$qinfo=$_POST['qinfo'];
+
+
+$headers = "From: $qname <$qemail>\r\n";
+$headers .= "Reply-To: ". strip_tags($qemail) . "\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+$body = '
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="http://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" type="text/css">
+<title>Quote Form</title>
+</head>
+
+<body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; font:12px arial; color:#000;">
+
+<table cellspacing="0" border="0" align="center" cellpadding="0" width="600" style="border:1px solid #eaeaea; margin-top:10px;">
+<tr>
+<td>
+<table cellspacing="0" border="0" align="center" cellpadding="0" width="100%">
+
+<tr align="center">
+<td style="font-family:arial; padding-bottom:40px;"><strong>
+<img class="subroo-logo" src="http://www.alldrivesubaru.com.au/wp-content/themes/subaru/images/new-logo.png" alt="subroo">
+</strong></td>
+</tr>
+</table>
+<table cellspacing="0" border="0" align="center" cellpadding="0" width="100%" style="border:0px solid #efefef; margin-top:0px; padding:0px;">
+<tr>
+<td style="padding:6px 15px;">
+<h3 style="margin:8px 0px;">Hello, Admin</h3></td>
+</tr>
+<tr>
+<td style="padding:6px 15px 15px;">
+<p>You have received a new Quote Request</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width:100%; padding:10px 5px;background: #1e82d7;color:#fff;">
+<p>Customer Details</p>
+</td>
+</tr>
+<tr>
+<td style="padding:0 10px;">
+<table cellspacing="5" border="0" cellpadding="0" width="100%" style="margin-top:15px;">
+<tr>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:15px;background: #eaeaea;padding:8px 15px;text-transform: capitalize;"><strong>Name :</strong></td>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:13px;background: #f9f9f9;padding:8px 15px;">'.$qname.'</td>
+</tr>
+
+<tr>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:15px;background: #eaeaea;padding:8px 15px;text-transform: capitalize;"><strong>Email :</strong></td>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:13px;background: #f9f9f9; padding:8px 15px;">'.$qemail.'</td>
+</tr>
+
+<tr>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:15px;background: #eaeaea;padding:8px 15px;text-transform: capitalize;"><strong>Phone :</strong></td>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:13px;background: #f9f9f9; padding:8px 15px;">'.$qphone.'</td>
+</tr>
+
+<tr>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:15px;background: #eaeaea;padding:8px 15px;text-transform: capitalize;"><strong>Date :</strong></td>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:13px;background: #f9f9f9; padding:8px 15px;">'.$qdate.'</td>
+</tr>
+
+<tr>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:15px;background: #eaeaea;padding:8px 15px;text-transform: capitalize;"><strong>Time :</strong></td>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:13px;background: #f9f9f9; padding:8px 15px;">'.$qtime.'</td>
+</tr>
+
+<tr>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:15px;background: #eaeaea;padding:8px 15px;text-transform: capitalize;"><strong>Model :</strong></td>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:13px;background: #f9f9f9; padding:8px 15px;">'.$qmodel.'</td>
+</tr>
+
+<tr>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:15px;background: #eaeaea;padding:8px 15px;text-transform: capitalize;"><strong>Year :</strong></td>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:13px;background: #f9f9f9; padding:8px 15px;">'.$qyear.'</td>
+</tr>
+
+<tr>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:15px;background: #eaeaea;padding:8px 15px;text-transform: capitalize;"><strong>Additional Quote Information :</strong></td>
+<td style="width:20%; font-family:"PT Sans",sans-serif; font-size:13px;background: #f9f9f9; padding:8px 15px;">'.$qinfo.'</td>
+</tr>
+</table>
+</td>
+<td width="30"></td>
+</tr>
+</table>
+<table cellspacing="0" border="0" align="center" cellpadding="0" width="100%" style="border:0px solid #efefef; margin-top:0px;">
+</table>
+<table cellspacing="0" border="0" align="center" cellpadding="0" width="100%" style="border:0px solid #efefef; margin-top:20px; padding:0px;">
+<tr>
+<td align="center" style="font-family:" PT Sans ",sans-serif; font-size:13px; padding:15px 0; border-top:1px solid #efefef;">
+</strong>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+
+</html>
+';
+$subject="Quote Request";
+$sent=wp_mail( 'akanksha.gupta@imarkinfotech.com', $subject, $body, $headers );
+
+  // Return the String  
+   die($sent);  
+
+}  
+// creating Ajax call for WordPress  
+add_action( 'wp_ajax_nopriv_quotemail', 'quotemail' );  
+add_action( 'wp_ajax_quotemail', 'quotemail' );
 
 

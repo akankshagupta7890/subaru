@@ -95,11 +95,13 @@ if($k==0)
 {
 $args = array(
 'post_type'   => 'testimonial',
+'posts_per_page' => -1,  
 );
 }
 else{
 $args = array(
 'post_type'   => 'testimonial',
+'posts_per_page' => -1,    
 'tax_query' => array(
 array(
 'taxonomy' => 'testimonial_categories',
@@ -121,14 +123,14 @@ $id=get_the_ID();
 <article>
 <div class="testimonial-inner">
 <div class="testimonial-slider">
-<div id="myCarouseltestimonial<?php echo $i; ?>" class="carousel slide" data-ride="carousel">
+<div id="myCarouseltestimonial<?php echo $k.$i; ?>" class="carousel slide" data-ride="carousel">
 <!-- Wrapper for slides -->
 <div class="carousel-inner" role="listbox">
 <!-- Left and right controls -->
-<a class="left carousel-control" href="#myCarouseltestimonial<?php echo $i; ?>" role="button" data-slide="prev">
+<a class="left carousel-control" href="#myCarouseltestimonial<?php echo $k.$i; ?>" role="button" data-slide="prev">
 <i class="fa fa-chevron-left" aria-hidden="true"></i>
 </a>
-<a class="right carousel-control" href="#myCarouseltestimonial<?php echo $i; ?>" role="button" data-slide="next">
+<a class="right carousel-control" href="#myCarouseltestimonial<?php echo $k.$i; ?>" role="button" data-slide="next">
 <i class="fa fa-chevron-right" aria-hidden="true"></i>
 </a>
 
@@ -159,7 +161,7 @@ $slide_image = wp_get_attachment_image_src($slide_id,'full');
 $slide_url = $slide_image[0];
 if($j==1){ $clas=' active'; } else{ $clas=''; }
 ?>
-<li data-target="#myCarouseltestimonial<?php echo $i; ?>" data-slide-to="<?php echo $i; ?>" class="<?php echo $clas; ?>" style="background-image:url('<?php echo $slide_url; ?>');"></li>
+<li data-target="#myCarouseltestimonial<?php echo $k.$i; ?>" data-slide-to="<?php echo $j-1; ?>" class="<?php echo $clas; ?>" style="background-image:url('<?php echo $slide_url; ?>');"></li>
 <?php 
 $j++;
 endwhile;

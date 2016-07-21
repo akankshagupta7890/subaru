@@ -41,3 +41,11 @@ jQuery('#engine-testi').empty().append(resp);
 }
 });
 }
+
+jQuery( function() {
+jQuery( "#qdate" ).datepicker();
+  } );
+
+jQuery(function() {
+jQuery('#qtime').timepicker();
+});

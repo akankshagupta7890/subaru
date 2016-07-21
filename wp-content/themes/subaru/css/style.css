@@ -11184,15 +11184,16 @@ a.add-quote-btn {
     z-index: 99999;
 }
 
+.modal-backdrop {
+    z-index: 1024;
+}
 
-
-.modal-open {
-    overflow: visible;
-    padding-right: 0 !important;
+.modal-open header {
+   right: 17px;
 }
 
 #landingGetQuote .modal-dialog,
-#engfeaGetQuote .modal-dialog {
+#engfeaGetQuote .modal-dialog{
     width: 90%;
     margin: 60px auto;
     top: 0;
@@ -11202,8 +11203,20 @@ a.add-quote-btn {
     position: absolute;
 }
 
+#myModalGetQuote .modal-dialog{
+    width: 90%;
+    margin: 60px auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: 850px;
+    position: absolute;
+}
+
+
 #landingGetQuote .modal-content,
-#engfeaGetQuote .modal-content {
+#engfeaGetQuote .modal-content,
+#myModalGetQuote .modal-content{
     background: #fafafa;
     border-radius: 0;
     border-bottom-left-radius: 6px;
@@ -11215,7 +11228,8 @@ a.add-quote-btn {
 }
 
 #landingGetQuote .modal-header,
-#engfeaGetQuote .modal-header {
+#engfeaGetQuote .modal-header,
+#myModalGetQuote .modal-header{
     padding: 0;
     background: #0b0b0b;
     border: none;
@@ -11345,6 +11359,30 @@ button.close.red-close:hover {
     margin-bottom: 30px;
 }
 
+.modal-form-body .form-group div.make-it-half{
+    width: 48.6%;
+    margin-right: 7px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#myModalGetQuote .modal-form-body .form-group{
+    margin-right: 21px;
+}
+
+#myModalGetQuote .modal-form-body .form-group.no-mar{
+    margin-right: 0;
+}
+
+.modal-form-body .form-group.make-it-full select.form-control{
+    width: 100%;
+    margin-right: 0;
+}
+
+.modal-form-body .form-group div.make-it-half.no-mar{
+    margin-right: 0;
+}
+
 .modal-form-body .form-group.radio {
     margin-bottom: 10px;
     min-height: 100%;
@@ -11370,6 +11408,11 @@ button.close.red-close:hover {
     margin-right: 6px;
     position: relative;
     top: -1px;
+}
+
+#myModalGetQuote .modal-form-body label{
+    font-size: 14px;
+    letter-spacing: 0.01em;
 }
 
 .modal-form-body .form-control {
@@ -11402,6 +11445,11 @@ button.close.red-close:hover {
 .form-group.no-mar,
 .modal-form-body .select-opt select.form-control.no-mar,
 .modal-form-body .eng-type-four .form-group.radio.no-mar {
+    margin-right: 0;
+}
+
+.modal-form-body .select-opt .make-it-half select.form-control{
+    width: 100%;
     margin-right: 0;
 }
 
@@ -11531,7 +11579,7 @@ button.close.red-close:hover {
 }
 
 .modal-form-body .sel-add-on .form-group.textarea,
-.modal-form-body .eng-type-four .form-group.textarea {
+.modal-form-body .eng-type-four .form-group.textarea, #myModalGetQuote .form-group.textarea {
     width: 100%;
     padding: 0;
 }
@@ -11539,6 +11587,10 @@ button.close.red-close:hover {
 .modal-form-body .sel-add-on .form-group.textarea textarea.form-control,
 .modal-form-body .eng-type-four .form-group.textarea textarea.form-control {
     min-height: 220px;
+}
+
+#myModalGetQuote .form-group.textarea textarea.form-control{
+    min-height: 150px;
 }
 
 .modal-form-body .sel-add-on .form-group.textarea label,
@@ -11664,6 +11716,40 @@ button.close.red-close:hover {
     font-weight: 600;
     letter-spacing: normal;
     color: #787878;
+}
+
+#myModalGetQuote .pop-heading h1{
+    color: #e7008b;
+}
+
+#myModalGetQuote button.close.red-close{
+    background: #e7008b;
+}
+
+#myModalGetQuote button.close.red-close:hover {
+    background: #c50175;
+}
+
+#myModalGetQuote .popup-get-fm-btn{
+    background:#e7008b;
+}
+
+#myModalGetQuote .popup-get-fm-btn:hover, #myModalGetQuote .popup-get-fm-btn:focus {
+    background: #c50175;
+}
+
+#myModalGetQuote .modal-form-body .form-control.error{
+    border-color: #f00;
+}
+
+#myModalGetQuote #success-quote{
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    margin: 10px 0 0;
+    border-radius: 4px;
+    line-height: 2.5;
+    padding: 0.2em 1em;
 }
 
 

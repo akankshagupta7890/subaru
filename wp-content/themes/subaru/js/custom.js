@@ -362,7 +362,7 @@ jQuery('#phone').keypress(function (event) {
         event.preventDefault();
     }
 });
-jQuery('#phone1').keypress(function (event) {
+jQuery('#phone1, #qphone').keypress(function (event) {
     var keycode = event.which;
     if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
         event.preventDefault();
@@ -460,3 +460,105 @@ return false;
 
 ////////validation for Enquiry form //////
 
+////////validation for Quote form (Header) //////
+function quoteval(){
+
+var qname= jQuery("#qname").val();
+var qphone= jQuery("#qphone").val();
+var qemail= jQuery("#qemail").val();
+var atpos1 = qemail.indexOf("@");
+var dotpos1 = qemail.lastIndexOf(".");
+var qdate= jQuery("#qdate").val();
+var qtime=jQuery("#qtime").val();
+var qmodel=jQuery("#qmodel").val();
+var qyear=jQuery("#qyear").val();
+var qinfo=jQuery("#qinfo").val();
+var r=true;
+
+jQuery("#qname").removeClass('error');  
+jQuery("#qphone").removeClass('error');  
+jQuery("#qemail").removeClass('error');  
+jQuery("#qdate").removeClass('error');  
+jQuery("#qtime").removeClass('error');  
+
+if(qname=="" || qname==null)
+{
+jQuery("#qname").addClass('error');  
+r=false;
+}
+
+if(qphone=="" || qphone==null)
+{
+jQuery("#qphone").addClass('error');
+r=false;
+}
+
+if(qemail=="" || qemail==null)
+{
+jQuery("#qemail").addClass('error'); 
+r=false;
+}
+ 
+if(qemail!=''){
+if (atpos1<1 || dotpos1<atpos1+2 || dotpos1+2>=qemail.length) {
+jQuery("#qemail").addClass('error');
+r=false;
+}
+}
+
+if(qdate=="" || qdate==null)
+{
+jQuery("#qdate").addClass('error');  
+r=false;
+}
+
+if(qtime=="" || qtime==null)
+{
+jQuery("#qtime").addClass('error');  
+r=false;
+}
+ 
+if(r==true)
+{
+jQuery.ajax({  
+type: 'POST',  
+url: ajaxurl,  
+data: {  
+action: 'quotemail',  
+qname: qname,
+qphone: qphone,
+qemail: qemail,
+qdate: qdate,
+qtime: qtime,
+qmodel: qmodel,
+qyear: qyear,
+qinfo: qinfo,
+},  
+beforeSend: function() {
+// setting a timeout
+jQuery("#quote_form .popup-get-fm-btn").addClass('loading');
+},
+success: function(data){
+if(data=='1')
+{
+var msg="Your Enquiry has been Sent.";
+jQuery("#quote_form .popup-get-fm-btn").removeClass('loading');
+jQuery("#success-quote").html(''); 
+jQuery("#success-quote").show();
+jQuery("#success-quote").append(msg); 
+jQuery('#quote_form').find("input[type=text], textarea,select").val("");
+setTimeout(function(){ jQuery("#success-quote").hide(); }, 3000);
+}
+},  
+error: function(errorThrown){  
+alert(errorThrown);  
+}  
+}); 
+return false;
+}
+else{
+return false;
+}
+
+    return false;
+}

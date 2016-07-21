@@ -505,7 +505,7 @@ header ul.nav.navbar-nav {
     position: relative;
     width: 100%;
     padding-bottom: 70px;
-    min-height: 700px;
+    min-height: 730px;
     margin-bottom: 20px;
 }
 
@@ -575,11 +575,12 @@ header ul.nav.navbar-nav {
 }
 
 .all-subro-operates-list p {
-    color: #535253;
+    color: #010101;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 400;
     text-align: center;
+    line-height: 1.6;
 }
 
 .all-subro-operates-list ul {
@@ -592,11 +593,12 @@ header ul.nav.navbar-nav {
     width: 100%;
     position: relative;
     padding-left: 25px;
-    color: #535253;
+    color: #010101;
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 400;
     margin-bottom: 5px;
+    line-height: 1.6;
 }
 
 .all-subro-operates-list ul li:before {
@@ -605,7 +607,7 @@ header ul.nav.navbar-nav {
     background-position: 0 0;
     background-repeat: no-repeat;
     position: absolute;
-    top: 3px;
+    top: 4px;
     left: 0;
     width: 13px;
     height: 13px;
@@ -2056,15 +2058,15 @@ div.wpcf7 img.ajax-loader {
     color: #fff !important;
 }
 
-.opportunities h2{
+.opportunities h2 {
     margin-bottom: 30px;
 }
 
-.opportunities .particular-steo{
+.opportunities .particular-steo {
     margin-bottom: 30px;
 }
 
-.opportunities .particular-steo h2{
+.opportunities .particular-steo h2 {
     margin-bottom: 4px
 }
 
@@ -2328,6 +2330,132 @@ div.wpcf7 img.ajax-loader {
 .subapedia.has-mm .mega-menu-item ul li a:focus {
     color: #df0185;
 }
+
+
+/** Footer Sticky Popup  **/
+
+.sticky-popup.right-bottom {
+    width: 100%;
+    max-width: 265px;
+    right: 0;
+}
+
+.sticky-popup .popup-header {
+    background-color: #0c86ff;
+    border-radius: 0;
+    border: none;
+    position: relative;
+    padding: 12px 10px 12px 5px;
+    width: 241px;
+    float: right;
+}
+
+.sticky-popup .popup-header:before{
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: -12px;
+    bottom: 22px;
+    width: 30px;
+    background: #0c86ff;
+    transform: skewX(-42deg);
+    -webkit-transform: skewX(-42deg);
+}
+
+.sticky-popup .popup-header:after {
+    content: "";
+    position: absolute;
+    top: 27px;
+    left: -24px;
+    width: 29px;
+    bottom: 0;
+    background: #0c86ff;
+    z-index: -1;
+}
+
+.sticky-popup .popup-title {
+    position: relative;
+}
+
+.sticky-popup .popup-title:before {
+    content: "\f003";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    margin-right: 15px;
+    color: #fff;
+}
+
+.sticky-popup .popup-title:after {
+    content: "\f077";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    margin-left: 15px;
+    color: #000;
+}
+
+.sticky-popup.open .popup-title:after{
+    content: "\f078";
+}
+
+.sticky-popup .popup-image {
+    display: none;
+}
+
+.sticky-popup .wpcf7-form-control.wpcf7-text, .sticky-popup .wpcf7-form-control.wpcf7-captchar{
+    width: 100%;
+    height: 41px;
+    border: solid 1px #cfcece;
+    box-shadow: none;
+    border-radius: 0;
+    background: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #6c6c6c;
+    padding: 6px 12px;
+}
+
+.sticky-popup .wpcf7-form-control.wpcf7-textarea{
+    height: 80px;
+    padding: 6px 12px;
+    border: solid 1px #cfcece;
+}
+
+.sticky-popup .wpcf7-form-control.wpcf7-submit{
+    background: #dd0b84;
+    border: solid 1px transparent;
+    height: 41px;
+    color: #fff;
+    width: 100%;
+    font-family: 'AgencyBold';
+    font-size: 18px;
+    text-transform: uppercase;
+    margin: 0;
+    margin-right: -4px;
+    padding: 6px;
+    vertical-align: middle;
+    transition: all 0.6s ease-in-out;
+    -webkit-transition: all 0.6s ease-in-out;
+}
+
+.sticky-popup .wpcf7-form-control.wpcf7-submit:hover, .sticky-popup .wpcf7-form-control.wpcf7-submit:focus {
+    background: #fff;
+    color: #dd0b84;
+    border-color: #dd0b84;
+}
+
+.sticky-popup span.wpcf7-not-valid-tip{
+    display: none !important;
+}
+
+
+/** Footer Sticky Popup End **/
 
 @media(min-width:1600px) {
     header .navbar>.container-fluid .navbar-brand {

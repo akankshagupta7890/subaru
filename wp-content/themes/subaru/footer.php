@@ -73,10 +73,11 @@ echo '</ul>';}
 <ul>
 <li><a href="<?php echo get_permalink(133); ?>">Contact US</a></li>
 </ul>
+  
 </div>
 </div>
 </footer>
-
+<?php get_sidebar('quote'); ?>
 <?php wp_footer(); ?>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/liberary.js"></script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.min.js"></script>
@@ -105,7 +106,11 @@ axis: "y"
 <script>
 new WOW().init();
 </script>
+<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/jquery-ui.css" type="text/css">
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery-ui.js"></script>
 
+<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.timepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/jquery.timepicker.css" />
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/custom-footer.js"></script>
 </body>
 </html>

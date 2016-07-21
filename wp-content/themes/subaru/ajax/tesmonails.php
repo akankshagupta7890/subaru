@@ -11,12 +11,14 @@ itemsDesktopSmall: [979, 1]
 
 });
 });
+
 </script> 
 <?php
 $id=$_POST['id'];	 
 include('../../../../wp-config.php');
 $term = get_term( $id, 'testimonial_categories' );	 
 $args = array('post_type' => 'testimonial',
+'posts_per_page' => 10,
 'tax_query' => array(
 array(
 'taxonomy' => 'testimonial_categories',
@@ -35,8 +37,8 @@ $loop = new WP_Query($args);
 <div class="engine-testi-text">
 <?php echo get_excerpt(220).'...'; ?>
 <div class="engine-testi-name">
-<h4>Michael Zagami </h4>
-<p>Client Role (If any)</p>
+<h4><?php echo get_the_title();?> </h4>
+<p><?php the_field('client_role'); ?></p>
 </div>
 </div>
 </div>

@@ -21,6 +21,7 @@ else{$id='';}
 </ul> 
 </div>
 <div class="tab-content">
+<div class="tab-pane fade active in" id="home">   
 <div id="engine-testi">
 <?php
 echo $thecatid = get_query_var('cat'); echo $thecatid;
@@ -33,8 +34,8 @@ $i=1;
 <div class="engine-testi-text">
 <?php echo get_excerpt(220).'...'; ?>
 <div class="engine-testi-name">
-<h4><?php the_title();?> </h4>
-<p><?php the_field('client_role');?></p>
+<h4><?php echo get_the_title();?> </h4>
+<p><?php the_field('client_role'); ?></p>
 </div>
 </div>
 </div>
@@ -46,6 +47,7 @@ wp_reset_postdata();
 <div class="text-center">
 <a href="<?php echo get_permalink(85); ?>" class="testi-btn">View More TESTIMONIALS</a>
 </div>
+</div>    
 </div>
 
 </div>
